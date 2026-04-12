@@ -101,18 +101,18 @@ export default function ServicesSection() {
     <section id="services" className="py-20 lg:py-28 bg-bg-dark">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary">
-            Nos Services
+        <div className="max-w-2xl mb-16">
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-8">
+            Services
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+            Des solutions sur mesure pour chaque{" "}
+            <span className="text-primary-light">enjeu stratégique.</span>
           </h2>
-          <p className="mt-4 text-text-light text-lg">
-            Des solutions sur mesure pour répondre à vos enjeux stratégiques et
-            organisationnels.
-          </p>
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
             <ServiceCard
               key={service.title}

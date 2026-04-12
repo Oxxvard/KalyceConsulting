@@ -6,11 +6,14 @@
   --color-primary-light: #654D6C;
   --color-primary-dark: #3E2D43;
   --color-secondary: #654D6C;
-  --color-accent: #8B7391;
-  --color-bg: #FAFAFA;
-  --color-bg-dark: #F5F0F6;
+  --color-accent: #C4A97D;
+  --color-accent-light: #E8DFD0;
+  --color-bg: #FAF9F7;
+  --color-bg-dark: #F0EDE8;
+  --color-bg-cream: #F5F2ED;
   --color-text: #1A1A1A;
   --color-text-light: #6B7280;
+  --color-text-muted: #9CA3AF;
 
   /* Typography */
   --font-display: "Playfair Display", serif;
