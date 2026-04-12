@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import Logo from "./Logo";
-import Button from "./Button";
 
 const navLinks = [
-  { label: "Accueil", href: "#accueil" },
   { label: "Services", href: "#services" },
+  { label: "Références", href: "#references" },
   { label: "À propos", href: "#a-propos" },
   { label: "Contact", href: "#contact" },
 ];
@@ -15,7 +14,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-8 h-16"
         aria-label="Navigation principale"
@@ -31,7 +30,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-text hover:text-primary font-medium text-sm transition-colors duration-200"
+                className="text-text/70 hover:text-primary font-medium text-sm transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -41,9 +40,24 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Button href="#devis" variant="primary">
+          <a
+            href="#devis"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+          >
+            <svg
+              className="w-3.5 h-3.5"
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <line x1="0" y1="7" x2="14" y2="7" />
+              <polyline points="8,1 14,7 8,13" />
+            </svg>
             Demander un devis
-          </Button>
+          </a>
         </div>
 
         {/* Mobile hamburger button */}
@@ -83,21 +97,21 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="block px-3 py-2 rounded-md text-text hover:text-primary hover:bg-bg-dark font-medium text-sm transition-colors"
+                  className="block px-3 py-2.5 rounded-md text-text hover:text-primary hover:bg-bg-dark font-medium text-sm transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               </li>
             ))}
-            <li className="pt-2">
-              <Button
+            <li className="pt-2 border-t border-gray-100 mt-2">
+              <a
                 href="#devis"
-                variant="primary"
-                className="w-full text-center"
+                className="block px-3 py-2.5 text-primary font-medium text-sm"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Demander un devis
-              </Button>
+                Demander un devis →
+              </a>
             </li>
           </ul>
         </div>
