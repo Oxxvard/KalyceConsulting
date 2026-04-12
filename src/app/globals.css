@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors - edit these to update the entire site */
+  --color-primary: #533E59;
+  --color-primary-light: #654D6C;
+  --color-primary-dark: #3E2D43;
+  --color-secondary: #654D6C;
+  --color-accent: #8B7391;
+  --color-bg: #FAFAFA;
+  --color-bg-dark: #F5F0F6;
+  --color-text: #1A1A1A;
+  --color-text-light: #6B7280;
+
+  /* Typography */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
