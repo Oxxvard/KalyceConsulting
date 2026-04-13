@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function HeroSection() {
   return (
     <section
       id="accueil"
-      className="relative min-h-[90vh] flex flex-col justify-center bg-bg pt-24 pb-20 lg:pt-28 lg:pb-28 overflow-hidden"
+      className="relative bg-bg pt-24 pb-0 lg:pt-28 overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8 w-full">
         {/* Main heading */}
@@ -40,9 +42,22 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Hero image - full width */}
+      <div className="mt-16 lg:mt-20 mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="relative w-full h-[240px] md:h-[340px] lg:h-[420px] rounded-2xl overflow-hidden">
+          <Image
+            src="/images/hero-bg.jpg"
+            alt="Vue aérienne d'une côte méditerranéenne"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+        </div>
+      </div>
+
       {/* Decorative elements */}
       <div className="absolute top-20 right-0 w-72 h-72 bg-accent-light/30 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-10 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
     </section>
   );
 }
