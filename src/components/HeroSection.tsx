@@ -12,32 +12,13 @@ export default function HeroSection() {
           <span className="text-primary-light">façonne votre avenir.</span>
         </h1>
 
-        {/* CTA row */}
-        <div className="mt-10 flex items-center gap-4">
+        {/* CTA */}
+        <div className="mt-10">
           <a
             href="#services"
             className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
           >
             Nos services
-          </a>
-          <a
-            href="#devis"
-            className="inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors"
-            aria-label="Demander un devis"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="8" y1="2" x2="8" y2="14" />
-              <line x1="2" y1="8" x2="14" y2="8" />
-            </svg>
           </a>
         </div>
 

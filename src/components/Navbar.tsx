@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -16,6 +17,8 @@ export default function Navbar() {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [atTop, setAtTop] = useState(true);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +32,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const getHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -36,7 +41,7 @@ export default function Navbar() {
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0"
       } ${
-        atTop
+        atTop && isHome
           ? "bg-transparent"
           : "bg-white/90 backdrop-blur-md shadow-sm"
       }`}
@@ -54,39 +59,37 @@ export default function Navbar() {
           aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <span
-            className={`block w-6 h-[2px] transition-all duration-200 ${
-              atTop ? "bg-primary" : "bg-text"
-            } ${mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
+            className={`block w-6 h-[2px] bg-text transition-all duration-200 ${
+              mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+            }`}
           />
           <span
-            className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
-              atTop ? "bg-primary" : "bg-text"
-            } ${mobileMenuOpen ? "opacity-0" : ""}`}
+            className={`block w-6 h-[2px] bg-text mt-[5px] transition-all duration-200 ${
+              mobileMenuOpen ? "opacity-0" : ""
+            }`}
           />
           <span
-            className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
-              atTop ? "bg-primary" : "bg-text"
-            } ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
+            className={`block w-6 h-[2px] bg-text mt-[5px] transition-all duration-200 ${
+              mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+            }`}
           />
         </button>
 
         {/* Logo */}
-        <a href="#accueil" className="flex-shrink-0">
+        <a href={isHome ? "#accueil" : "/"} className="flex-shrink-0">
           <Logo height={42} />
         </a>
 
-        {/* Desktop navigation - centered */}
+        {/* Desktop navigation */}
         <ul className="hidden lg:flex items-center gap-8 ml-12">
           {navLinks.map((link, i) => (
             <li key={link.href}>
               <a
-                href={link.href}
+                href={getHref(link.href)}
                 className={`relative font-medium text-sm transition-colors duration-200 ${
-                  i === 0
+                  i === 0 && isHome
                     ? "text-primary after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
-                    : atTop
-                      ? "text-text/70 hover:text-primary"
-                      : "text-text/70 hover:text-primary"
+                    : "text-text/70 hover:text-primary"
                 }`}
               >
                 {link.label}
@@ -99,15 +102,15 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-md ${
           mobileMenuOpen ? "max-h-80" : "max-h-0"
-        } ${atTop ? "bg-white/95 backdrop-blur-md" : "bg-white/95"}`}
+        }`}
       >
         <ul className="flex flex-col gap-1 px-6 py-4">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
-                href={link.href}
+                href={getHref(link.href)}
                 className="block py-3 text-text hover:text-primary font-medium text-sm transition-colors border-b border-gray-100 last:border-0"
                 onClick={() => setMobileMenuOpen(false)}
               >
