@@ -2,7 +2,7 @@ export default function HeroSection() {
   return (
     <section
       id="accueil"
-      className="relative min-h-[90vh] flex flex-col justify-center bg-bg pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden"
+      className="relative min-h-[90vh] flex flex-col justify-center bg-bg pt-24 pb-20 lg:pt-28 lg:pb-28 overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8 w-full">
         {/* Main heading */}
