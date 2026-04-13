@@ -4,21 +4,34 @@ export default function HeroSection() {
   return (
     <section
       id="accueil"
-      className="relative bg-bg pt-24 pb-0 lg:pt-28 overflow-hidden"
+      className="relative min-h-[90vh] flex flex-col justify-center pt-24 pb-20 lg:pt-28 lg:pb-28 overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 w-full">
+      {/* Background image */}
+      <Image
+        src="/images/hero-bg.jpg"
+        alt=""
+        fill
+        className="object-cover"
+        priority
+        aria-hidden="true"
+      />
+
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-primary-dark/70" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 w-full">
         {/* Main heading */}
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary leading-[1.05] tracking-tight max-w-4xl">
+        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight max-w-4xl">
           Chaque décision
           <br />
-          <span className="text-primary-light">façonne votre avenir.</span>
+          <span className="text-accent-light">façonne votre avenir.</span>
         </h1>
 
         {/* CTA */}
         <div className="mt-10">
           <a
             href="#services"
-            className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-primary text-sm font-medium px-6 py-3 rounded-full hover:bg-accent-light transition-colors"
           >
             Nos services
           </a>
@@ -34,30 +47,13 @@ export default function HeroSection() {
           >
             <path d="M5 3l10 7-10 7V3z" />
           </svg>
-          <p className="text-sm text-text-light leading-relaxed">
+          <p className="text-sm text-white/80 leading-relaxed">
             Cabinet de conseil en management, nous accompagnons les dirigeants
             et leurs équipes dans la stratégie d&apos;entreprise, la conduite du
             changement et l&apos;optimisation organisationnelle.
           </p>
         </div>
       </div>
-
-      {/* Hero image - full width */}
-      <div className="mt-16 lg:mt-20 mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="relative w-full h-[240px] md:h-[340px] lg:h-[420px] rounded-2xl overflow-hidden">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Vue aérienne d'une côte méditerranéenne"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-        </div>
-      </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-0 w-72 h-72 bg-accent-light/30 rounded-full blur-3xl -z-10" />
     </section>
   );
 }
