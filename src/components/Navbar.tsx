@@ -20,6 +20,9 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // Transparent + white text when at top of homepage (dark hero bg)
+  const isTransparent = atTop && isHome;
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -41,7 +44,7 @@ export default function Navbar() {
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0"
       } ${
-        atTop && isHome
+        isTransparent
           ? "bg-transparent"
           : "bg-white/90 backdrop-blur-md shadow-sm"
       }`}
@@ -59,24 +62,29 @@ export default function Navbar() {
           aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <span
-            className={`block w-6 h-[2px] bg-text transition-all duration-200 ${
-              mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
-            }`}
+            className={`block w-6 h-[2px] transition-all duration-200 ${
+              isTransparent ? "bg-white" : "bg-text"
+            } ${mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
           />
           <span
-            className={`block w-6 h-[2px] bg-text mt-[5px] transition-all duration-200 ${
-              mobileMenuOpen ? "opacity-0" : ""
-            }`}
+            className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
+              isTransparent ? "bg-white" : "bg-text"
+            } ${mobileMenuOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`block w-6 h-[2px] bg-text mt-[5px] transition-all duration-200 ${
-              mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-            }`}
+            className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
+              isTransparent ? "bg-white" : "bg-text"
+            } ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
           />
         </button>
 
         {/* Logo */}
-        <a href={isHome ? "#accueil" : "/"} className="flex-shrink-0">
+        <a
+          href={isHome ? "#accueil" : "/"}
+          className={`flex-shrink-0 transition-all duration-300 ${
+            isTransparent ? "brightness-0 invert" : ""
+          }`}
+        >
           <Logo height={42} />
         </a>
 
@@ -87,9 +95,13 @@ export default function Navbar() {
               <a
                 href={getHref(link.href)}
                 className={`relative font-medium text-sm transition-colors duration-200 ${
-                  i === 0 && isHome
-                    ? "text-primary after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
-                    : "text-text/70 hover:text-primary"
+                  isTransparent
+                    ? i === 0 && isHome
+                      ? "text-white after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-white"
+                      : "text-white/70 hover:text-white"
+                    : i === 0 && isHome
+                      ? "text-primary after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                      : "text-text/70 hover:text-primary"
                 }`}
               >
                 {link.label}
