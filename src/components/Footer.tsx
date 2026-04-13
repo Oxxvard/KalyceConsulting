@@ -120,8 +120,7 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} Kalyce Consulting. Tous droits
-            réservés.
+            © 2026 Kalyce Consulting. Tous droits réservés.
           </p>
           <p className="text-white/30 text-xs">
             Conseil en management &amp; stratégie

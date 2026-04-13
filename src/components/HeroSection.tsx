@@ -7,9 +7,9 @@ export default function HeroSection() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 w-full">
         {/* Main heading */}
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary leading-[1.05] tracking-tight max-w-4xl">
-          Nous accompagnons
+          Chaque décision
           <br />
-          <span className="text-primary-light">votre transformation.</span>
+          <span className="text-primary-light">façonne votre avenir.</span>
         </h1>
 
         {/* CTA row */}
