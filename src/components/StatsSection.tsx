@@ -6,7 +6,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-bg-cream">
+    <section className="py-20 lg:py-28 bg-bg-soft">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Badge */}
         <div className="mb-8">

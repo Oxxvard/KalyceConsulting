@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <section id="a-propos" className="py-20 lg:py-28 bg-bg">
+    <section id="a-propos" className="py-20 lg:py-28 bg-bg-soft">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left column - main text */}

@@ -31,7 +31,7 @@ const references = [
 
 export default function ReferencesSection() {
   return (
-    <section className="py-16 lg:py-20 bg-bg">
+    <section id="references" className="py-20 lg:py-28 bg-bg">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section label */}
         <div className="flex items-center gap-2 mb-8">

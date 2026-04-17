@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -16,8 +17,8 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-primary-dark/70" />
+      {/* Gradient overlay : darker bottom, soft top to harmonize with mauve site bg */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/80 via-primary-dark/65 to-primary-dark/85" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 w-full">
         {/* Main heading */}
@@ -27,14 +28,20 @@ export default function HeroSection() {
           <span className="text-accent-light">façonne votre avenir.</span>
         </h1>
 
-        {/* CTA */}
-        <div className="mt-10">
-          <a
-            href="#services"
-            className="inline-flex items-center gap-2 bg-white text-primary text-sm font-medium px-6 py-3 rounded-full hover:bg-accent-light transition-colors"
+        {/* CTAs */}
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 bg-white text-primary text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
           >
             Nos services
-          </a>
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 border border-white/40 text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors"
+          >
+            Démarrer un projet
+          </Link>
         </div>
 
         {/* Subtitle */}
