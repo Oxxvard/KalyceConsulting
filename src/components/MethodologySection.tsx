@@ -31,7 +31,7 @@ export default function MethodologySection() {
   return (
     <section
       id="methodologie"
-      className="py-20 lg:py-28 bg-bg"
+      className="py-20 lg:py-28 bg-bg-mauve"
       aria-label="Notre méthodologie"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">

@@ -1,43 +1,29 @@
 import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
-import MethodologySection from "@/components/MethodologySection";
-import ReferencesSection from "@/components/ReferencesSection";
+import HomeIntro from "@/components/home/HomeIntro";
+import HomeServicesPreview from "@/components/home/HomeServicesPreview";
+import HomeApproach from "@/components/home/HomeApproach";
 import StatsSection from "@/components/StatsSection";
+import HomeReferencesPreview from "@/components/home/HomeReferencesPreview";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import AboutSection from "@/components/AboutSection";
-import FaqSection from "@/components/FaqSection";
-import ContactSection from "@/components/ContactSection";
-import { faqs } from "@/lib/faqs";
+import HomeCta from "@/components/home/HomeCta";
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: f.a,
-    },
-  })),
+export const metadata = {
+  title: "Kalyce Consulting | Conseil en Management & Stratégie",
+  description:
+    "Cabinet de conseil en management. Stratégie d'entreprise, conduite du changement et performance organisationnelle au service des dirigeants.",
 };
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
       <HeroSection />
-      <ServicesSection />
-      <MethodologySection />
-      <ReferencesSection />
+      <HomeIntro />
+      <HomeServicesPreview />
+      <HomeApproach />
       <StatsSection />
+      <HomeReferencesPreview />
       <TestimonialsSection />
-      <AboutSection />
-      <FaqSection />
-      <ContactSection />
+      <HomeCta />
     </>
   );
 }

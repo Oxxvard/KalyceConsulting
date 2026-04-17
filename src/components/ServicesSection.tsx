@@ -99,7 +99,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-bg-dark">
+    <section id="services" className="py-20 lg:py-28 bg-bg-soft">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
         <FadeIn className="max-w-2xl mb-16">
