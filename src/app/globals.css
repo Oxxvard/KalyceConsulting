@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors - edit these to update the entire site */
+  /* Brand Colors - inspired by La Défense sunset (deep purples + warm coral) */
   --color-primary: #533E59;
-  --color-primary-light: #654D6C;
-  --color-primary-dark: #3E2D43;
+  --color-primary-light: #7A5E82;
+  --color-primary-dark: #2E1F36;
   --color-secondary: #654D6C;
-  --color-accent: #C4A97D;
-  --color-accent-light: #E8DFD0;
-  --color-bg: #FAF9F7;
-  --color-bg-dark: #F0EDE8;
-  --color-bg-cream: #F5F2ED;
+  --color-accent: #E07A5F;
+  --color-accent-light: #F5C9A8;
+  --color-bg: #FAF6F2;
+  --color-bg-dark: #F0E6DC;
+  --color-bg-cream: #F7EDE2;
   --color-text: #1A1A1A;
   --color-text-light: #6B7280;
   --color-text-muted: #9CA3AF;
