@@ -1,4 +1,5 @@
 import ServiceCard from "./ServiceCard";
+import FadeIn from "./FadeIn";
 
 const services = [
   {
@@ -101,7 +102,7 @@ export default function ServicesSection() {
     <section id="services" className="py-20 lg:py-28 bg-bg-dark">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
-        <div className="max-w-2xl mb-16">
+        <FadeIn className="max-w-2xl mb-16">
           <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-8">
             Services
           </span>
@@ -109,17 +110,18 @@ export default function ServicesSection() {
             Des solutions sur mesure pour chaque{" "}
             <span className="text-primary-light">enjeu stratégique.</span>
           </h2>
-        </div>
+        </FadeIn>
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <ServiceCard
-              key={service.title}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-            />
+          {services.map((service, i) => (
+            <FadeIn key={service.title} delay={i * 80}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            </FadeIn>
           ))}
         </div>
       </div>

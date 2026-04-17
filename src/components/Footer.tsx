@@ -116,7 +116,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/mentions-legales#cgv"
+                  href="/cgv"
                   className="text-white/60 hover:text-white transition-colors"
                 >
                   CGV
@@ -124,7 +124,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/mentions-legales#confidentialite"
+                  href="/confidentialite"
                   className="text-white/60 hover:text-white transition-colors"
                 >
                   Confidentialité
