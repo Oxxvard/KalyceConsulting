@@ -39,7 +39,7 @@ export default function FadeIn({
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
     );
 
     observer.observe(node);
@@ -50,7 +50,7 @@ export default function FadeIn({
     <Tag
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-[900ms] ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
