@@ -23,8 +23,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // Transparent + white text only at top of homepage (dark hero bg)
-  const isTransparent = atTop && isHome;
+  const isGlass = atTop && isHome;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +32,6 @@ export default function Navbar() {
       setVisible(currentScrollY < 10 || currentScrollY < lastScrollY);
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
@@ -47,14 +45,15 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-      } ${
-        isTransparent
-          ? "bg-transparent"
-          : "bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40"
       }`}
+      style={{ padding: isGlass ? "1.25rem 1.5rem 0" : undefined }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center px-6 lg:px-8 h-20"
+        className={`mx-auto flex max-w-7xl items-center transition-all duration-300 ${
+          isGlass
+            ? "liquid-glass rounded-xl px-5 py-2.5"
+            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40 px-6 lg:px-8 h-20"
+        }`}
         aria-label="Navigation principale"
       >
         {/* Hamburger - mobile */}
@@ -67,17 +66,17 @@ export default function Navbar() {
         >
           <span
             className={`block w-6 h-[2px] transition-all duration-200 ${
-              isTransparent ? "bg-white" : "bg-text"
+              isGlass ? "bg-white" : "bg-text"
             } ${mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
           />
           <span
             className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
-              isTransparent ? "bg-white" : "bg-text"
+              isGlass ? "bg-white" : "bg-text"
             } ${mobileMenuOpen ? "opacity-0" : ""}`}
           />
           <span
             className={`block w-6 h-[2px] mt-[5px] transition-all duration-200 ${
-              isTransparent ? "bg-white" : "bg-text"
+              isGlass ? "bg-white" : "bg-text"
             } ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
           />
         </button>
@@ -86,27 +85,27 @@ export default function Navbar() {
         <Link
           href="/"
           className={`flex-shrink-0 transition-all duration-300 ${
-            isTransparent ? "brightness-0 invert" : ""
+            isGlass ? "brightness-0 invert" : ""
           }`}
         >
-          <Logo height={42} />
+          <Logo height={isGlass ? 34 : 42} />
         </Link>
 
-        {/* Desktop navigation */}
-        <ul className="hidden lg:flex items-center gap-7 ml-12">
+        {/* Desktop links */}
+        <ul className="hidden lg:flex items-center gap-6 ml-auto mr-6">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative font-medium text-sm transition-colors duration-200 ${
-                    isTransparent
+                  className={`text-sm transition-colors duration-200 ${
+                    isGlass
                       ? active
-                        ? "text-white after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-white"
+                        ? "text-white font-medium"
                         : "text-white/70 hover:text-white"
                       : active
-                        ? "text-primary after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                        ? "text-primary font-medium relative after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
                         : "text-text/70 hover:text-primary"
                   }`}
                 >
@@ -118,12 +117,12 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:block ml-auto">
+        <div className="hidden lg:block">
           <Link
             href="/contact"
-            className={`inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full transition-colors ${
-              isTransparent
-                ? "bg-white text-primary hover:bg-accent-light"
+            className={`text-sm font-medium px-5 py-2 rounded-lg transition-all duration-200 ${
+              isGlass
+                ? "bg-white text-black hover:bg-gray-100"
                 : "bg-primary text-white hover:bg-primary-dark"
             }`}
           >
@@ -135,9 +134,11 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-md ${
-          mobileMenuOpen ? "max-h-[500px]" : "max-h-0"
-        }`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          isGlass
+            ? "liquid-glass rounded-b-xl mx-0 mt-1"
+            : "bg-white/95 backdrop-blur-md"
+        } ${mobileMenuOpen ? "max-h-[500px]" : "max-h-0"}`}
       >
         <ul className="flex flex-col gap-1 px-6 py-4">
           {navLinks.map((link) => {
@@ -146,8 +147,14 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block py-3 font-medium text-sm transition-colors border-b border-border/50 last:border-0 ${
-                    active ? "text-primary" : "text-text hover:text-primary"
+                  className={`block py-3 font-medium text-sm transition-colors ${
+                    isGlass
+                      ? `border-b border-white/10 last:border-0 ${
+                          active ? "text-white" : "text-white/70"
+                        }`
+                      : `border-b border-border/50 last:border-0 ${
+                          active ? "text-primary" : "text-text hover:text-primary"
+                        }`
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -160,7 +167,11 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center bg-primary text-white text-sm font-medium px-5 py-3 rounded-full"
+              className={`block w-full text-center text-sm font-medium px-5 py-3 rounded-lg ${
+                isGlass
+                  ? "bg-white text-black"
+                  : "bg-primary text-white"
+              }`}
             >
               Démarrer un projet
             </Link>
