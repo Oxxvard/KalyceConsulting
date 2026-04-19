@@ -1,13 +1,47 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import AnimatedHeading from "./AnimatedHeading";
 
 export default function HeroSection() {
+  const [fadeIn, setFadeIn] = useState(false);
+  const [ctaFadeIn, setCtaFadeIn] = useState(false);
+  const [pillFadeIn, setPillFadeIn] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setFadeIn(true), 800);
+    const t2 = setTimeout(() => setCtaFadeIn(true), 1200);
+    const t3 = setTimeout(() => setPillFadeIn(true), 1400);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
+
   return (
     <section
       id="accueil"
-      className="relative min-h-[90vh] flex flex-col justify-center pt-24 pb-20 lg:pt-28 lg:pb-28 overflow-hidden"
+      className="relative h-dvh flex flex-col overflow-hidden"
     >
-      {/* Background image */}
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        poster="/images/hero-bg.jpg"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Fallback image for no-JS / slow connections */}
       <Image
         src="/images/hero-bg.jpg"
         alt=""
@@ -17,48 +51,65 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Gradient overlay : darker bottom, soft top to harmonize with mauve site bg */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/80 via-primary-dark/65 to-primary-dark/85" />
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40 z-[1]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 w-full">
-        {/* Main heading */}
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight max-w-4xl">
-          Chaque décision
-          <br />
-          <span className="text-accent-light">façonne votre avenir.</span>
-        </h1>
+      {/* Hero content — anchored to bottom like VEX design */}
+      <div className="relative z-10 flex-1 flex flex-col justify-end px-6 lg:px-16 pb-12 lg:pb-16 pt-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-8 max-w-[1400px] mx-auto w-full">
+          {/* Left — heading + subtitle + CTAs */}
+          <div>
+            <AnimatedHeading
+              lines={[
+                { text: "Chaque décision", className: "text-white" },
+                {
+                  text: "façonne votre avenir.",
+                  className: "text-accent-light",
+                },
+              ]}
+              className="text-[clamp(2.5rem,5.5vw,5rem)]"
+            />
 
-        {/* CTAs */}
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 bg-white text-primary text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-          >
-            Nos services
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 border border-white/40 text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors"
-          >
-            Démarrer un projet
-          </Link>
-        </div>
+            <p
+              className="text-white/75 text-base lg:text-lg leading-relaxed max-w-xl mb-6 transition-all duration-1000"
+              style={{ opacity: fadeIn ? 1 : 0 }}
+            >
+              Cabinet de conseil en management, nous accompagnons les
+              dirigeants et leurs équipes dans la stratégie d&apos;entreprise,
+              la conduite du changement et l&apos;optimisation
+              organisationnelle.
+            </p>
 
-        {/* Subtitle */}
-        <div className="mt-16 flex items-start gap-3 max-w-lg">
-          <svg
-            className="w-5 h-5 mt-0.5 text-accent flex-shrink-0"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
+            <div
+              className="flex flex-wrap gap-3 transition-all duration-1000"
+              style={{ opacity: ctaFadeIn ? 1 : 0 }}
+            >
+              <Link
+                href="/services"
+                className="bg-white text-black text-sm font-medium px-7 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Nos services
+              </Link>
+              <Link
+                href="/contact"
+                className="liquid-glass text-white text-sm font-medium px-7 py-3 rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
+              >
+                Démarrer un projet
+              </Link>
+            </div>
+          </div>
+
+          {/* Right — glass pill (like VEX design) */}
+          <div
+            className="hidden lg:flex justify-end transition-all duration-1000"
+            style={{ opacity: pillFadeIn ? 1 : 0 }}
           >
-            <path d="M5 3l10 7-10 7V3z" />
-          </svg>
-          <p className="text-sm text-white/80 leading-relaxed">
-            Cabinet de conseil en management, nous accompagnons les dirigeants
-            et leurs équipes dans la stratégie d&apos;entreprise, la conduite du
-            changement et l&apos;optimisation organisationnelle.
-          </p>
+            <div className="liquid-glass rounded-xl px-6 py-4 border border-white/20 inline-block">
+              <span className="text-white/90 text-lg lg:text-xl font-light tracking-[-0.02em]">
+                Stratégie. Transformation. Performance.
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
