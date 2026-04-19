@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import AnimatedHeading from "./AnimatedHeading";
 
 export default function HeroSection() {
@@ -33,23 +32,12 @@ export default function HeroSection() {
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        poster="/images/hero-bg.jpg"
       >
         <source
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4"
           type="video/mp4"
         />
       </video>
-
-      {/* Fallback image for no-JS / slow connections */}
-      <Image
-        src="/images/hero-bg.jpg"
-        alt=""
-        fill
-        className="object-cover"
-        priority
-        aria-hidden="true"
-      />
 
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40 z-[1]" />
