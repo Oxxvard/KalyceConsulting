@@ -84,13 +84,13 @@ export default function HeroSection() {
             >
               <Link
                 href="/services"
-                className="bg-white text-black text-sm font-medium px-7 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+                className="bg-white text-[#0b0f10] text-sm font-medium px-7 py-3 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Nos services
               </Link>
               <Link
                 href="/contact"
-                className="liquid-glass text-white text-sm font-medium px-7 py-3 rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
+                className="bg-white text-[#0b0f10] text-sm font-medium px-7 py-3 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Démarrer un projet
               </Link>
