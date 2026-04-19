@@ -7,13 +7,17 @@ interface PageHeroProps {
   description?: string;
 }
 
-export default function PageHero({ eyebrow, title, description }: PageHeroProps) {
+export default function PageHero({
+  eyebrow,
+  title,
+  description,
+}: PageHeroProps) {
   return (
-    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-bg-mauve via-bg-soft to-bg overflow-hidden">
-      {/* Decorative violet glow */}
+    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-bg-soft overflow-hidden">
+      {/* Ambient glows */}
       <div
         aria-hidden="true"
-        className="absolute -top-32 -right-20 w-[480px] h-[480px] rounded-full bg-primary/15 blur-3xl"
+        className="absolute -top-32 -right-20 w-[480px] h-[480px] rounded-full bg-primary/20 blur-3xl"
       />
       <div
         aria-hidden="true"
@@ -21,7 +25,10 @@ export default function PageHero({ eyebrow, title, description }: PageHeroProps)
       />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <nav aria-label="Fil d'Ariane" className="text-xs text-text-light mb-5">
+        <nav
+          aria-label="Fil d'Ariane"
+          className="text-xs text-text-light mb-5"
+        >
           <Link href="/" className="hover:text-primary transition-colors">
             Accueil
           </Link>
@@ -32,7 +39,7 @@ export default function PageHero({ eyebrow, title, description }: PageHeroProps)
         <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-5">
           {eyebrow}
         </span>
-        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-[1.05] tracking-tight max-w-3xl">
+        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight max-w-3xl">
           {title}
         </h1>
         {description && (

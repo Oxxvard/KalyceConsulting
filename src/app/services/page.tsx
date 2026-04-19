@@ -23,7 +23,6 @@ const services = [
       "Diversification, internationalisation, partenariats",
       "Réflexion sur le business model et la proposition de valeur",
     ],
-    color: "from-primary to-primary-light",
   },
   {
     title: "Conduite du changement",
@@ -36,7 +35,6 @@ const services = [
       "Formation des managers et acculturation des équipes",
       "Pilotage de l'impact et mesure de l'adhésion",
     ],
-    color: "from-primary-dark to-primary",
   },
   {
     title: "Organisation & Performance",
@@ -49,7 +47,6 @@ const services = [
       "Performance opérationnelle et excellence d'exécution",
       "Programmes de réduction de coûts maîtrisés",
     ],
-    color: "from-secondary to-primary-light",
   },
   {
     title: "Accompagnement dirigeants",
@@ -62,7 +59,6 @@ const services = [
       "Animation de séminaires de codir / comex",
       "Médiation et alignement d'équipes dirigeantes",
     ],
-    color: "from-primary-light to-secondary",
   },
 ];
 
@@ -74,9 +70,9 @@ export default function ServicesPage() {
         title={
           <>
             Quatre métiers,{" "}
-            <span className="text-primary-light">
+            <em className="text-primary not-italic font-semibold italic">
               une exigence partagée.
-            </span>
+            </em>
           </>
         }
         description="Nos missions s'organisent autour de quatre expertises complémentaires. Toutes répondent à la même promesse : une approche rigoureuse, un transfert de savoir-faire et un impact mesurable."
@@ -91,14 +87,16 @@ export default function ServicesPage() {
                   i % 2 === 1 ? "lg:[&>:first-child]:order-2" : ""
                 }`}
               >
-                <div
-                  className={`lg:col-span-5 rounded-2xl p-8 lg:p-10 text-white bg-gradient-to-br ${s.color} relative overflow-hidden min-h-[260px] flex flex-col justify-end`}
-                >
+                <div className="lg:col-span-5 liquid-glass rounded-2xl p-8 lg:p-10 text-white border border-white/10 relative overflow-hidden min-h-[260px] flex flex-col justify-end">
                   <div
                     aria-hidden="true"
-                    className="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-white/10 blur-2xl"
+                    className="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-primary/20 blur-2xl"
                   />
-                  <span className="relative font-display text-6xl font-bold opacity-30">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -bottom-16 -left-10 w-48 h-48 rounded-full bg-accent/15 blur-2xl"
+                  />
+                  <span className="relative font-display text-6xl font-bold text-primary/40">
                     0{i + 1}
                   </span>
                   <h2 className="relative font-display text-2xl md:text-3xl font-bold mt-4">
@@ -107,7 +105,7 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="lg:col-span-7">
-                  <p className="text-text text-lg leading-relaxed mb-6">
+                  <p className="text-text-light text-lg leading-relaxed mb-6">
                     {s.summary}
                   </p>
                   <ul className="space-y-3">
@@ -134,7 +132,7 @@ export default function ServicesPage() {
                   </ul>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 mt-7 text-sm font-medium text-primary hover:text-primary-dark group"
+                    className="inline-flex items-center gap-2 mt-7 text-sm font-medium text-primary hover:text-primary-light group"
                   >
                     Échanger sur un projet
                     <svg

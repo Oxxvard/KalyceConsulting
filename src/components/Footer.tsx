@@ -19,16 +19,23 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-text">
-      {/* Top dark contact band */}
-      <div className="bg-bg-soft border-y border-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary leading-tight">
-            Contacter Kalyce Consulting
+    <footer className="bg-bg text-text-light">
+      {/* Top contact band */}
+      <div className="bg-bg-mauve border-y border-white/10 relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 -right-20 w-[420px] h-[420px] rounded-full bg-accent/15 blur-3xl"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
+            Contacter{" "}
+            <em className="text-primary not-italic font-semibold italic">
+              Kalyce Consulting
+            </em>
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-7 py-3.5 rounded-md hover:bg-primary-dark transition-colors self-start md:self-auto"
+            className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors self-start md:self-auto"
           >
             <svg
               className="w-4 h-4"
@@ -53,12 +60,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
           {/* Logo */}
           <div>
-            <Logo height={56} />
+            <div className="brightness-0 invert">
+              <Logo height={56} />
+            </div>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-display text-2xl font-semibold text-primary mb-2">
+            <h3 className="font-display text-2xl font-semibold text-white mb-2">
               Newsletter
             </h3>
             <p className="text-text-light text-sm mb-5">
@@ -69,7 +78,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-border mb-10" />
+        <hr className="border-white/10 mb-10" />
 
         {/* Social + columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
@@ -79,7 +88,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -95,7 +104,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="X (Twitter)"
-                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -111,7 +120,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -127,7 +136,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -143,7 +152,7 @@ export default function Footer() {
               <a
                 href="/sitemap.xml"
                 aria-label="Plan du site"
-                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -186,7 +195,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-border mb-6" />
+        <hr className="border-white/10 mb-6" />
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-text-muted text-xs">

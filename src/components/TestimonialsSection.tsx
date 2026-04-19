@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="temoignages"
-      className="py-20 lg:py-28 bg-bg-mauve"
+      className="py-20 lg:py-28 bg-bg"
       aria-label="Témoignages clients"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -33,9 +33,11 @@ export default function TestimonialsSection() {
           <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
             Témoignages
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Ce que nos clients{" "}
-            <span className="text-primary-light">en disent.</span>
+            <em className="text-primary not-italic font-semibold italic">
+              en disent.
+            </em>
           </h2>
         </FadeIn>
 
@@ -45,7 +47,7 @@ export default function TestimonialsSection() {
               as="article"
               key={t.author + i}
               delay={i * 120}
-              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm shadow-primary/5 flex flex-col"
+              className="liquid-glass rounded-2xl p-8 border border-white/10 flex flex-col"
             >
               <svg
                 className="w-8 h-8 text-accent mb-4"
@@ -55,12 +57,12 @@ export default function TestimonialsSection() {
               >
                 <path d="M7.17 6A5.17 5.17 0 002 11.17v6.66h6.66v-6.66H5.17C5.17 9.41 6.59 8 8.34 8V6H7.17zm9 0A5.17 5.17 0 0011 11.17v6.66h6.66v-6.66h-3.49c0-1.76 1.42-3.17 3.17-3.17V6h-1.17z" />
               </svg>
-              <blockquote className="text-text text-base leading-relaxed flex-1">
+              <blockquote className="text-text-light text-base leading-relaxed flex-1">
                 {t.quote}
               </blockquote>
-              <footer className="mt-6 pt-5 border-t border-gray-100">
-                <p className="font-semibold text-primary text-sm">{t.author}</p>
-                <p className="text-text-light text-xs mt-0.5">{t.role}</p>
+              <footer className="mt-6 pt-5 border-t border-white/10">
+                <p className="font-semibold text-white text-sm">{t.author}</p>
+                <p className="text-text-muted text-xs mt-0.5">{t.role}</p>
               </footer>
             </FadeIn>
           ))}

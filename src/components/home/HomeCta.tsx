@@ -3,14 +3,14 @@ import FadeIn from "../FadeIn";
 
 export default function HomeCta() {
   return (
-    <section className="py-20 lg:py-28 bg-primary text-white relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-bg-mauve text-white relative overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute -top-32 -right-20 w-[480px] h-[480px] rounded-full bg-accent/20 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="absolute -bottom-32 -left-20 w-[480px] h-[480px] rounded-full bg-primary-light/40 blur-3xl"
+        className="absolute -bottom-32 -left-20 w-[480px] h-[480px] rounded-full bg-primary/20 blur-3xl"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
@@ -20,7 +20,9 @@ export default function HomeCta() {
           </span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight">
             Une décision à structurer ?{" "}
-            <span className="text-accent-light">Parlons-en.</span>
+            <em className="text-primary not-italic font-semibold italic">
+              Parlons-en.
+            </em>
           </h2>
           <p className="mt-6 text-white/80 text-lg leading-relaxed max-w-2xl">
             Premier échange de 30 minutes, sans engagement, pour comprendre
@@ -29,7 +31,7 @@ export default function HomeCta() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-primary text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
             >
               Démarrer un projet
             </Link>

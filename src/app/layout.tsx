@@ -27,9 +27,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Kalyce Consulting" }],
   creator: "Kalyce Consulting",
   publisher: "Kalyce Consulting",
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -38,21 +36,12 @@ export const metadata: Metadata = {
     title: "Kalyce Consulting | Conseil en Management & Stratégie",
     description:
       "Cabinet de conseil accompagnant dirigeants et comités exécutifs dans leur transformation stratégique.",
-    images: [
-      {
-        url: "/images/hero-bg.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Kalyce Consulting — Conseil en management",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kalyce Consulting | Conseil en Management",
     description:
       "Cabinet de conseil en management : stratégie, transformation, performance.",
-    images: ["/images/hero-bg.jpg"],
   },
   robots: {
     index: true,
@@ -79,7 +68,6 @@ const organizationJsonLd = {
     "Cabinet de conseil en management : stratégie d'entreprise, conduite du changement, performance organisationnelle.",
   url: siteUrl,
   logo: `${siteUrl}/KalyceLogo.svg`,
-  image: `${siteUrl}/images/hero-bg.jpg`,
   address: {
     "@type": "PostalAddress",
     addressCountry: "FR",
@@ -109,7 +97,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
           rel="stylesheet"
         />
         <script
@@ -123,16 +111,19 @@ export default function RootLayout({
         className="font-body text-text bg-bg antialiased"
         suppressHydrationWarning
       >
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
-        >
-          Aller au contenu principal
-        </a>
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <CookieBanner />
+        <div className="bg-ambient" aria-hidden="true" />
+        <div className="relative z-[1]">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+          >
+            Aller au contenu principal
+          </a>
+          <Navbar />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <CookieBanner />
+        </div>
       </body>
     </html>
   );

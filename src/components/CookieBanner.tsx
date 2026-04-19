@@ -37,9 +37,9 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Bandeau cookies"
-      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[60] bg-white rounded-2xl shadow-xl border border-gray-100 p-5"
+      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[60] liquid-glass rounded-2xl border border-white/15 p-5"
     >
-      <p className="text-sm text-text leading-relaxed">
+      <p className="text-sm text-text-light leading-relaxed">
         Nous n&apos;utilisons que des cookies strictement nécessaires au
         fonctionnement du site. Aucun cookie de traçage publicitaire.{" "}
         <a
@@ -52,13 +52,13 @@ export default function CookieBanner() {
       <div className="mt-4 flex gap-2 justify-end">
         <button
           onClick={decline}
-          className="text-sm font-medium text-text-light hover:text-text px-3 py-2 rounded-lg transition-colors"
+          className="text-sm font-medium text-text-light hover:text-white px-3 py-2 rounded-full transition-colors"
         >
           Refuser
         </button>
         <button
           onClick={accept}
-          className="text-sm font-medium bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors"
+          className="text-sm font-medium bg-white text-[#1a0e2d] px-4 py-2 rounded-full hover:bg-accent-light transition-colors"
         >
           J&apos;accepte
         </button>

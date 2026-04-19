@@ -18,9 +18,11 @@ export default function FaqSection() {
           <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
             Questions fréquentes
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Tout ce que vous voulez{" "}
-            <span className="text-primary-light">savoir.</span>
+            <em className="text-primary not-italic font-semibold italic">
+              savoir.
+            </em>
           </h2>
         </FadeIn>
 
@@ -31,7 +33,7 @@ export default function FaqSection() {
               <FadeIn
                 key={item.q}
                 delay={i * 40}
-                className="bg-white rounded-xl border border-gray-100 overflow-hidden"
+                className="liquid-glass rounded-2xl border border-white/10 overflow-hidden"
               >
                 <dt>
                   <button
@@ -39,9 +41,9 @@ export default function FaqSection() {
                     onClick={() => setOpenIndex(open ? null : i)}
                     aria-expanded={open}
                     aria-controls={`faq-panel-${i}`}
-                    className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 hover:bg-bg-cream/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
                   >
-                    <span className="font-medium text-primary text-base">
+                    <span className="font-medium text-white text-base">
                       {item.q}
                     </span>
                     <svg
