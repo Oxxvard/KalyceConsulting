@@ -19,16 +19,14 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [atTop, setAtTop] = useState(true);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  const isGlass = atTop && isHome;
+  const isGlass = isHome;
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setAtTop(currentScrollY < 10);
       setVisible(currentScrollY < 10 || currentScrollY < lastScrollY);
       setLastScrollY(currentScrollY);
     };
@@ -49,7 +47,7 @@ export default function Navbar() {
       style={{ padding: isGlass ? "1.25rem 1.5rem 0" : undefined }}
     >
       <nav
-        className={`mx-auto flex max-w-7xl items-center transition-all duration-300 ${
+        className={`relative mx-auto flex max-w-7xl items-center transition-all duration-300 ${
           isGlass
             ? "liquid-glass rounded-xl px-5 py-2.5"
             : "bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40 px-6 lg:px-8 h-20"
@@ -92,7 +90,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden lg:flex items-center gap-6 ml-auto mr-6">
+        <ul className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -117,7 +115,7 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:block">
+        <div className="hidden lg:block ml-auto">
           <Link
             href="/contact"
             className={`text-sm font-medium px-5 py-2 rounded-lg transition-all duration-200 ${
