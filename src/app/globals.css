@@ -1,62 +1,64 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors — deep violet identity + coral accents */
-  --color-primary: #b48ad6;
-  --color-primary-light: #cba9e4;
-  --color-primary-dark: #8a5fbf;
-  --color-secondary: #654D6C;
+  /* Brand Colors — cinematic slate + warm amber highlights (extracted from buildings video) */
+  --color-primary: #e6c488;
+  --color-primary-light: #f2d9a8;
+  --color-primary-dark: #a87a3e;
+  --color-secondary: #8b8778;
   --color-accent: #e8724a;
   --color-accent-light: #f5a882;
 
-  /* Dark backgrounds */
-  --color-bg: #120820;
-  --color-bg-soft: #1a0e2d;
-  --color-bg-mauve: #241540;
-  --color-bg-dark: #0d0518;
+  /* Dark backgrounds — slate matching video shadows */
+  --color-bg: #0b0f10;
+  --color-bg-soft: #101416;
+  --color-bg-mauve: #16191b;
+  --color-bg-dark: #07090a;
 
   /* Light backgrounds (for contrast sections) */
-  --color-bg-light: #f5f0f8;
-  --color-bg-cream: #faf7f4;
+  --color-bg-light: #ebe6d9;
+  --color-bg-cream: #efeae0;
 
   /* Text (default on dark backgrounds) */
   --color-text: #ffffff;
-  --color-text-light: #d9d2e6;
-  --color-text-muted: #8a7f96;
+  --color-text-light: #d1d5db;
+  --color-text-muted: #8b8778;
 
   /* Dark text (for light sections) */
-  --color-ink: #1f1424;
-  --color-ink-light: #6e5f75;
+  --color-ink: #16191b;
+  --color-ink-light: #5a5d5f;
 
   /* Border */
-  --color-border: #2a1d3e;
-  --color-border-light: #e0d5e8;
+  --color-border: #1f2426;
+  --color-border-light: #d8d0bd;
 
   /* Typography */
   --font-display: "Playfair Display", serif;
   --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
 }
 
-/* Ambient purple glow background */
+/* Ambient slate + amber glow background (echoing video highlights) */
 .bg-ambient {
   position: fixed;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(155, 90, 200, 0.28), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(100, 50, 160, 0.22), transparent 65%),
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(60, 30, 100, 0.15), transparent 70%),
-    #120820;
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(230, 196, 136, 0.08), transparent 65%),
+    radial-gradient(ellipse 40% 30% at 85% 75%, rgba(100, 130, 125, 0.12), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 60%, rgba(30, 40, 42, 0.5), transparent 75%),
+    #0b0f10;
   pointer-events: none;
 }
 
 /* Liquid Glass */
 .liquid-glass {
-  background: rgba(30, 15, 50, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   background-blend-mode: luminosity;
   backdrop-filter: blur(10px) saturate(1.4);
   -webkit-backdrop-filter: blur(10px) saturate(1.4);
@@ -86,6 +88,23 @@ html {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* Floaty scroll indicator animation */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, 6px);
+    opacity: 0.9;
+  }
+}
+
+.animate-floaty {
+  animation: floaty 2.4s ease-in-out infinite;
 }
 
 /* Reduced motion preference */

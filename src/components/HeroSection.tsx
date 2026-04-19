@@ -42,6 +42,16 @@ export default function HeroSection() {
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40 z-[1]" />
 
+      {/* Bottom fade — transitions video into next section's slate #0b0f10 */}
+      <div
+        aria-hidden="true"
+        className="absolute left-0 right-0 bottom-0 h-[30%] z-[5] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(11,15,16,0) 0%, rgba(11,15,16,0.6) 55%, #0b0f10 100%)",
+        }}
+      />
+
       {/* Hero content — anchored to bottom like VEX design */}
       <div className="relative z-10 flex-1 flex flex-col justify-end px-6 lg:px-16 pb-12 lg:pb-16 pt-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-8 max-w-[1400px] mx-auto w-full">
@@ -99,6 +109,14 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-white/50 flex items-center gap-2 animate-floaty"
+        aria-hidden="true"
+      >
+        Scroll ↓
       </div>
     </section>
   );
