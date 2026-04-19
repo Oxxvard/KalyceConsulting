@@ -52,7 +52,7 @@ export default function HeroSection() {
                 { text: "Chaque décision", className: "text-white" },
                 {
                   text: "façonne votre avenir.",
-                  className: "text-accent-light",
+                  className: "text-primary italic",
                 },
               ]}
               className="text-[clamp(2.5rem,5.5vw,5rem)]"

@@ -52,18 +52,18 @@ export default function AboutPage() {
         title={
           <>
             Un cabinet à taille humaine,{" "}
-            <span className="text-primary-light">
+            <em className="text-primary not-italic font-semibold italic">
               des ambitions sans limites.
-            </span>
+            </em>
           </>
         }
         description="Kalyce Consulting réunit des consultants seniors, anciens dirigeants et experts sectoriels, qui partagent une même conviction : la qualité d'une décision se mesure à ses effets."
       />
 
-      {/* Manifesto */}
+      {/* Manifesto — DARK */}
       <section className="py-20 lg:py-28 bg-bg" aria-label="Manifeste">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <FadeIn className="space-y-6 text-text text-lg leading-relaxed">
+          <FadeIn className="space-y-6 text-text-light text-lg leading-relaxed">
             <p>
               Kalyce Consulting est un cabinet de conseil en management
               indépendant, fondé sur une intuition simple : les transformations
@@ -86,20 +86,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Figures */}
-      <section className="py-16 lg:py-20 bg-bg-soft" aria-label="Chiffres clés">
+      {/* Figures — LIGHT contrast */}
+      <section className="py-16 lg:py-20 bg-bg-light" aria-label="Chiffres clés">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {figures.map((f, i) => (
               <FadeIn
                 key={f.label}
                 delay={i * 80}
-                className="bg-white rounded-2xl p-7 border border-border text-center"
+                className="bg-white rounded-2xl p-7 border border-border-light text-center"
               >
-                <p className="font-display text-4xl md:text-5xl font-bold text-primary">
+                <p className="font-display text-4xl md:text-5xl font-bold text-primary-dark">
                   {f.value}
                 </p>
-                <p className="mt-2 text-text-light text-xs uppercase tracking-wider font-semibold">
+                <p className="mt-2 text-ink-light text-xs uppercase tracking-wider font-semibold">
                   {f.label}
                 </p>
               </FadeIn>
@@ -108,16 +108,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 lg:py-28 bg-bg" aria-label="Valeurs">
+      {/* Values — DARK with glass */}
+      <section className="py-20 lg:py-28 bg-bg-soft" aria-label="Valeurs">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <FadeIn className="max-w-2xl mb-14">
             <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
               Nos valeurs
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
               Six convictions{" "}
-              <span className="text-primary-light">qui nous guident.</span>
+              <em className="text-primary not-italic font-semibold italic">
+                qui nous guident.
+              </em>
             </h2>
           </FadeIn>
 
@@ -126,9 +128,9 @@ export default function AboutPage() {
               <FadeIn
                 key={v.title}
                 delay={i * 60}
-                className="bg-bg-soft rounded-2xl p-7 border border-border"
+                className="liquid-glass rounded-2xl p-7 border border-white/10"
               >
-                <h3 className="font-display text-lg font-semibold text-primary mb-3">
+                <h3 className="font-display text-lg font-semibold text-white mb-3">
                   {v.title}
                 </h3>
                 <p className="text-text-light text-sm leading-relaxed">
@@ -140,21 +142,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team brief */}
-      <section className="py-20 lg:py-28 bg-bg-mauve" aria-label="Équipe">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8 text-center">
+      {/* Team brief — DARK mauve */}
+      <section
+        className="py-20 lg:py-28 bg-bg-mauve relative overflow-hidden"
+        aria-label="Équipe"
+      >
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 -right-20 w-[480px] h-[480px] rounded-full bg-primary/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-32 -left-20 w-[480px] h-[480px] rounded-full bg-accent/15 blur-3xl"
+        />
+        <div className="relative mx-auto max-w-4xl px-4 lg:px-8 text-center">
           <FadeIn>
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-white/15 text-white px-4 py-1.5 rounded-full mb-6">
               Équipe
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight mb-6">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               Des consultants seniors,{" "}
-              <span className="text-primary-light">d&apos;abord opérationnels.</span>
+              <em className="text-primary not-italic font-semibold italic">
+                d&apos;abord opérationnels.
+              </em>
             </h2>
-            <p className="text-text-light text-lg leading-relaxed">
+            <p className="text-white/80 text-lg leading-relaxed">
               Notre équipe combine d&apos;anciens dirigeants, des consultants
-              issus de cabinets internationaux et des experts sectoriels.
-              Ce qui nous rassemble : un parcours opérationnel solide, et le
+              issus de cabinets internationaux et des experts sectoriels. Ce
+              qui nous rassemble : un parcours opérationnel solide, et le
               refus du jargon pour le jargon.
             </p>
           </FadeIn>

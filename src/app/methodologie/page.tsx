@@ -96,21 +96,26 @@ export default function MethodologiePage() {
         title={
           <>
             Une démarche structurée,{" "}
-            <span className="text-primary-light">des résultats durables.</span>
+            <em className="text-primary not-italic font-semibold italic">
+              des résultats durables.
+            </em>
           </>
         }
         description="Quatre étapes éprouvées, six principes intangibles. Notre méthodologie cherche moins à impressionner qu'à produire un impact réel et durable."
       />
 
-      {/* Steps timeline */}
+      {/* Steps timeline — DARK */}
       <section className="py-20 lg:py-28 bg-bg" aria-label="Étapes">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <FadeIn className="max-w-2xl mb-14">
             <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
               Démarche
             </span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary leading-tight">
-              Quatre étapes, du diagnostic à l&apos;ancrage.
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
+              Quatre étapes, du diagnostic à{" "}
+              <em className="text-primary not-italic font-semibold italic">
+                l&apos;ancrage.
+              </em>
             </h2>
           </FadeIn>
 
@@ -120,10 +125,10 @@ export default function MethodologiePage() {
                 key={s.n}
                 delay={i * 80}
                 as="li"
-                className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-6 md:gap-10 bg-white rounded-2xl border border-border p-7 md:p-9"
+                className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-6 md:gap-10 liquid-glass rounded-2xl border border-white/10 p-7 md:p-9"
               >
                 <div className="flex md:flex-col items-center md:items-start gap-3">
-                  <span className="font-display text-5xl font-bold text-accent/40 leading-none">
+                  <span className="font-display text-5xl font-bold text-accent/50 leading-none">
                     {s.n}
                   </span>
                   <span className="text-xs uppercase tracking-wider text-text-muted font-semibold">
@@ -131,7 +136,7 @@ export default function MethodologiePage() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl font-semibold text-primary mb-2">
+                  <h3 className="font-display text-2xl font-semibold text-white mb-2">
                     {s.title}
                   </h3>
                   <p className="text-text-light text-base leading-relaxed mb-5">
@@ -144,7 +149,7 @@ export default function MethodologiePage() {
                     {s.deliverables.map((d) => (
                       <li
                         key={d}
-                        className="flex items-start gap-2.5 text-sm text-text"
+                        className="flex items-start gap-2.5 text-sm text-text-light"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-2" />
                         <span>{d}</span>
@@ -158,16 +163,21 @@ export default function MethodologiePage() {
         </div>
       </section>
 
-      {/* Principles */}
-      <section className="py-20 lg:py-28 bg-bg-soft" aria-label="Principes">
+      {/* Principles — LIGHT contrast */}
+      <section
+        className="py-20 lg:py-28 bg-bg-light"
+        aria-label="Principes"
+      >
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <FadeIn className="max-w-2xl mb-14">
             <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
               Principes
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-ink leading-tight">
               Six principes que{" "}
-              <span className="text-primary-light">nous ne négocions pas.</span>
+              <em className="text-primary-dark not-italic font-semibold italic">
+                nous ne négocions pas.
+              </em>
             </h2>
           </FadeIn>
 
@@ -176,12 +186,12 @@ export default function MethodologiePage() {
               <FadeIn
                 key={p.title}
                 delay={i * 60}
-                className="bg-white rounded-2xl p-7 border border-border"
+                className="bg-white rounded-2xl p-7 border border-border-light"
               >
-                <h3 className="font-display text-lg font-semibold text-primary mb-2">
+                <h3 className="font-display text-lg font-semibold text-ink mb-2">
                   {p.title}
                 </h3>
-                <p className="text-text-light text-sm leading-relaxed">
+                <p className="text-ink-light text-sm leading-relaxed">
                   {p.text}
                 </p>
               </FadeIn>

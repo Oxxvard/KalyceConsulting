@@ -1,43 +1,65 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors - violet identity + warm sunset accents */
-  --color-primary: #533E59;
-  --color-primary-light: #7A5E82;
-  --color-primary-dark: #2E1F36;
+  /* Brand Colors — deep violet identity + coral accents */
+  --color-primary: #b48ad6;
+  --color-primary-light: #cba9e4;
+  --color-primary-dark: #8a5fbf;
   --color-secondary: #654D6C;
-  --color-accent: #E07A5F;
-  --color-accent-light: #F5C9A8;
+  --color-accent: #e8724a;
+  --color-accent-light: #f5a882;
 
-  /* Backgrounds - subtle violet tints harmonizing with the hero */
-  --color-bg: #FBF8FB;
-  --color-bg-soft: #F4EEF5;
-  --color-bg-mauve: #ECE3EE;
-  --color-bg-dark: #E5DAE8;
-  --color-bg-cream: #F7EDE2;
+  /* Dark backgrounds */
+  --color-bg: #120820;
+  --color-bg-soft: #1a0e2d;
+  --color-bg-mauve: #241540;
+  --color-bg-dark: #0d0518;
 
-  /* Text */
-  --color-text: #1F1424;
-  --color-text-light: #6E5F75;
-  --color-text-muted: #9E91A4;
-  --color-border: #E5DAE8;
+  /* Light backgrounds (for contrast sections) */
+  --color-bg-light: #f5f0f8;
+  --color-bg-cream: #faf7f4;
+
+  /* Text (default on dark backgrounds) */
+  --color-text: #ffffff;
+  --color-text-light: #d9d2e6;
+  --color-text-muted: #8a7f96;
+
+  /* Dark text (for light sections) */
+  --color-ink: #1f1424;
+  --color-ink-light: #6e5f75;
+
+  /* Border */
+  --color-border: #2a1d3e;
+  --color-border-light: #e0d5e8;
 
   /* Typography */
   --font-display: "Playfair Display", serif;
   --font-body: "Inter", system-ui, sans-serif;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* ── Liquid Glass ── */
+/* Ambient purple glow background */
+.bg-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(155, 90, 200, 0.28), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(100, 50, 160, 0.22), transparent 65%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(60, 30, 100, 0.15), transparent 70%),
+    #120820;
+  pointer-events: none;
+}
+
+/* Liquid Glass */
 .liquid-glass {
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(30, 15, 50, 0.35);
   background-blend-mode: luminosity;
-  backdrop-filter: blur(12px) saturate(1.4);
-  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
   border: none;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
   position: relative;

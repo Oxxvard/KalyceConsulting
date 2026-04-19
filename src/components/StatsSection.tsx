@@ -1,3 +1,5 @@
+import FadeIn from "./FadeIn";
+
 const stats = [
   { value: "150+", label: "Missions réalisées" },
   { value: "50+", label: "Clients accompagnés" },
@@ -8,42 +10,38 @@ export default function StatsSection() {
   return (
     <section className="py-20 lg:py-28 bg-bg-soft">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        {/* Badge */}
-        <div className="mb-8">
+        <FadeIn className="mb-8">
           <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full">
             En chiffres
           </span>
-        </div>
+        </FadeIn>
 
-        {/* Text */}
-        <div className="max-w-2xl mb-14">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+        <FadeIn className="max-w-2xl mb-14">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Nous construisons des{" "}
-            <span className="text-primary-light">
+            <em className="text-primary not-italic font-semibold italic">
               partenariats durables
-            </span>{" "}
+            </em>{" "}
             avec des dirigeants ambitieux.
           </h2>
           <p className="mt-6 text-text-light text-lg leading-relaxed">
             Nos résultats parlent d&apos;eux-mêmes. Chaque mission est une
             opportunité de créer un impact mesurable et durable.
           </p>
-        </div>
+        </FadeIn>
 
-        {/* Stats cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="border-2 border-primary/15 rounded-2xl p-8 bg-white hover:border-primary/30 transition-colors"
-            >
-              <p className="font-display text-5xl md:text-6xl font-bold text-primary">
-                {stat.value}
-              </p>
-              <p className="mt-3 text-text-light text-sm font-medium uppercase tracking-wider">
-                {stat.label}
-              </p>
-            </div>
+          {stats.map((stat, i) => (
+            <FadeIn key={stat.label} delay={i * 100}>
+              <div className="liquid-glass rounded-2xl p-8 border border-white/10">
+                <p className="font-display text-5xl md:text-6xl font-bold text-white">
+                  {stat.value}
+                </p>
+                <p className="mt-3 text-text-light text-sm font-medium uppercase tracking-wider">
+                  {stat.label}
+                </p>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </div>

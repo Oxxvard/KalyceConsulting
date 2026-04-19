@@ -55,9 +55,11 @@ export default function ContactSection() {
             <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
               Contact
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
               Parlons de votre{" "}
-              <span className="text-primary-light">prochain projet.</span>
+              <em className="text-primary not-italic font-semibold italic">
+                prochain projet.
+              </em>
             </h2>
             <p className="mt-5 text-text-light text-base leading-relaxed">
               Échangeons sans engagement sur vos enjeux stratégiques. Notre
@@ -66,7 +68,7 @@ export default function ContactSection() {
 
             <ul className="mt-10 space-y-5">
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0">
                   <svg
                     className="w-4 h-4 text-primary"
                     viewBox="0 0 24 24"
@@ -87,14 +89,14 @@ export default function ContactSection() {
                   </p>
                   <a
                     href="mailto:contact@kalyceconsulting.fr"
-                    className="text-primary hover:underline text-sm font-medium"
+                    className="text-white hover:text-primary transition-colors text-sm font-medium"
                   >
                     contact@kalyceconsulting.fr
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0">
                   <svg
                     className="w-4 h-4 text-primary"
                     viewBox="0 0 24 24"
@@ -114,14 +116,14 @@ export default function ContactSection() {
                   </p>
                   <a
                     href="tel:+33100000000"
-                    className="text-primary hover:underline text-sm font-medium"
+                    className="text-white hover:text-primary transition-colors text-sm font-medium"
                   >
                     +33 1 00 00 00 00
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0">
                   <svg
                     className="w-4 h-4 text-primary"
                     viewBox="0 0 24 24"
@@ -140,12 +142,12 @@ export default function ContactSection() {
                   <p className="text-xs uppercase tracking-wider text-text-muted font-semibold">
                     Adresse
                   </p>
-                  <p className="text-text text-sm font-medium">Paris, France</p>
+                  <p className="text-white text-sm font-medium">Paris, France</p>
                 </div>
               </li>
             </ul>
 
-            <div className="mt-10 p-5 bg-bg-mauve rounded-xl border border-border">
+            <div className="mt-10 liquid-glass rounded-2xl border border-white/10 p-5">
               <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-1">
                 Confidentialité
               </p>
@@ -159,11 +161,11 @@ export default function ContactSection() {
           {/* Right column - form card */}
           <div
             id="devis"
-            className="bg-white rounded-3xl shadow-xl shadow-primary/10 border border-border p-8 md:p-10"
+            className="liquid-glass rounded-3xl border border-white/10 p-8 md:p-10"
           >
             {submitted ? (
               <div className="text-center py-16">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center mx-auto mb-6">
                   <svg
                     className="w-8 h-8 text-primary"
                     viewBox="0 0 24 24"
@@ -176,7 +178,7 @@ export default function ContactSection() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-primary mb-3">
+                <h3 className="font-display text-2xl font-bold text-white mb-3">
                   Merci pour votre message
                 </h3>
                 <p className="text-text-light text-sm">
@@ -346,7 +348,7 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white font-medium text-sm px-6 py-4 rounded-xl hover:bg-primary-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="w-full bg-white text-[#1a0e2d] font-medium text-sm px-6 py-4 rounded-full hover:bg-accent-light transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   Envoyer ma demande
                 </button>
@@ -365,7 +367,7 @@ export default function ContactSection() {
 }
 
 const inputClass =
-  "w-full bg-white border border-border rounded-xl px-4 py-3 text-text text-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors";
+  "w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white text-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors";
 
 function Field({
   id,
@@ -380,7 +382,10 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-text mb-2">
+      <label
+        htmlFor={id}
+        className="block text-sm font-medium text-white mb-2"
+      >
         {label}
         {required && <span className="text-accent ml-1">*</span>}
       </label>

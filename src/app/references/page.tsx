@@ -29,7 +29,6 @@ const cases = [
       { value: "3", label: "implantations réussies" },
       { value: "12", label: "mois de mission" },
     ],
-    color: "bg-primary",
   },
   {
     sector: "Distribution · réseau",
@@ -47,7 +46,6 @@ const cases = [
       { value: "+4 pts", label: "marge opérationnelle" },
       { value: "92 %", label: "adhésion managers" },
     ],
-    color: "bg-primary-dark",
   },
   {
     sector: "Numérique · scale-up",
@@ -65,7 +63,6 @@ const cases = [
       { value: "−35 %", label: "turnover" },
       { value: "9 mois", label: "durée du programme" },
     ],
-    color: "bg-secondary",
   },
   {
     sector: "Santé · établissement",
@@ -83,7 +80,6 @@ const cases = [
       { value: "100 %", label: "équipe dirigeante stabilisée" },
       { value: "18 mois", label: "d'accompagnement" },
     ],
-    color: "bg-primary-light",
   },
   {
     sector: "Secteur public",
@@ -101,7 +97,6 @@ const cases = [
       { value: "0", label: "conflit social" },
       { value: "8 mois", label: "de cadrage" },
     ],
-    color: "bg-primary",
   },
   {
     sector: "Énergie · ETI",
@@ -119,7 +114,6 @@ const cases = [
       { value: "× 3", label: "valorisation pré-money" },
       { value: "Top 10", label: "fonds européens convaincus" },
     ],
-    color: "bg-primary-dark",
   },
 ];
 
@@ -142,14 +136,16 @@ export default function ReferencesPage() {
         title={
           <>
             Des transformations menées au plus près{" "}
-            <span className="text-primary-light">de la réalité.</span>
+            <em className="text-primary not-italic font-semibold italic">
+              de la réalité.
+            </em>
           </>
         }
         description="Quelques exemples de missions récentes, anonymisées par respect de la confidentialité que nous devons à nos clients."
       />
 
       {/* Sectors */}
-      <section className="py-12 lg:py-16 bg-bg border-b border-border">
+      <section className="py-12 lg:py-16 bg-bg border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <FadeIn>
             <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-5">
@@ -159,7 +155,7 @@ export default function ReferencesPage() {
               {sectorsServed.map((s) => (
                 <span
                   key={s}
-                  className="px-4 py-2 rounded-full bg-bg-mauve text-primary text-sm font-medium border border-border"
+                  className="px-4 py-2 rounded-full bg-white/5 text-text-light text-sm font-medium border border-white/15"
                 >
                   {s}
                 </span>
@@ -169,7 +165,7 @@ export default function ReferencesPage() {
         </div>
       </section>
 
-      {/* Case studies */}
+      {/* Case studies — DARK with glass */}
       <section className="py-20 lg:py-28 bg-bg" aria-label="Études de cas">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 space-y-10">
           {cases.map((c, i) => (
@@ -177,15 +173,17 @@ export default function ReferencesPage() {
               key={c.title}
               delay={i * 60}
               as="article"
-              className="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-3xl border border-border overflow-hidden"
+              className="grid grid-cols-1 lg:grid-cols-12 liquid-glass rounded-3xl border border-white/10 overflow-hidden"
             >
-              <div
-                className={`${c.color} text-white p-8 lg:p-10 lg:col-span-4 flex flex-col justify-between min-h-[280px]`}
-              >
-                <span className="text-xs font-medium bg-white/15 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20 self-start">
+              <div className="bg-bg-mauve text-white p-8 lg:p-10 lg:col-span-4 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+                <div
+                  aria-hidden="true"
+                  className="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-primary/25 blur-2xl"
+                />
+                <span className="relative text-xs font-medium bg-white/15 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20 self-start">
                   {c.sector}
                 </span>
-                <div>
+                <div className="relative">
                   <p className="text-xs uppercase tracking-wider text-white/60 font-semibold mb-2">
                     Client
                   </p>
@@ -196,7 +194,7 @@ export default function ReferencesPage() {
               </div>
 
               <div className="p-8 lg:p-10 lg:col-span-8">
-                <h3 className="font-display text-xl md:text-2xl font-bold text-primary mb-4">
+                <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-4">
                   {c.title}
                 </h3>
 
@@ -214,7 +212,7 @@ export default function ReferencesPage() {
                   {c.actions.map((a) => (
                     <li
                       key={a}
-                      className="flex items-start gap-2.5 text-sm text-text"
+                      className="flex items-start gap-2.5 text-sm text-text-light"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-2" />
                       <span>{a}</span>
@@ -222,7 +220,7 @@ export default function ReferencesPage() {
                   ))}
                 </ul>
 
-                <div className="grid grid-cols-3 gap-4 pt-5 border-t border-border">
+                <div className="grid grid-cols-3 gap-4 pt-5 border-t border-white/10">
                   {c.results.map((r) => (
                     <div key={r.label}>
                       <p className="font-display text-2xl font-bold text-primary">
@@ -242,7 +240,7 @@ export default function ReferencesPage() {
         <FadeIn className="text-center mt-14">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
           >
             Discuter de votre projet
           </Link>

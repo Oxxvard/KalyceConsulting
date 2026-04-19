@@ -7,7 +7,7 @@ export default function NewsletterForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm text-primary font-medium bg-bg-mauve border border-border rounded-md px-4 py-3">
+      <p className="text-sm text-white font-medium bg-white/10 border border-white/15 rounded-full px-5 py-3">
         Merci pour votre inscription.
       </p>
     );
@@ -29,11 +29,11 @@ export default function NewsletterForm() {
         type="email"
         required
         placeholder="Adresse email"
-        className="flex-1 border border-border bg-white px-4 py-3 text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
+        className="flex-1 rounded-full border border-white/15 bg-white/10 backdrop-blur-sm px-5 py-3 text-sm text-white placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
       />
       <button
         type="submit"
-        className="bg-primary text-white text-sm font-medium px-7 py-3 hover:bg-primary-dark transition-colors"
+        className="rounded-full bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3 hover:bg-accent-light transition-colors"
       >
         S&apos;inscrire
       </button>
