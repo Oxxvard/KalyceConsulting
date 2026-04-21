@@ -7,15 +7,21 @@ export default function GrowthOsProxy() {
   const router = useRouter();
 
   useEffect(() => {
-    // En développement: redirige vers localhost:3001
-    // En production: sera configuré avec Vercel rewrites
     if (typeof window !== 'undefined') {
-      const isDev = process.env.NODE_ENV === 'development';
-      if (isDev) {
-        // Redirige vers l'app growth-os sur le port 3001
-        const growthOsUrl = process.env.NEXT_PUBLIC_GROWTH_OS_URL || 'http://localhost:3001';
-        window.location.href = `${growthOsUrl}${window.location.pathname}${window.location.search}`;
+      const hostname = window.location.hostname;
+      let growthOsUrl;
+
+      // Détecte si on est sur GitHub Codespace
+      if (hostname.includes('.app.github.dev')) {
+        // Remplace le port 3000 par 3001 dans l'URL Codespace
+        growthOsUrl = `https://${hostname.replace('-3000.app.github.dev', '-3001.app.github.dev')}`;
+      } else {
+        // Utilise localhost en développement local
+        growthOsUrl = 'http://localhost:3001';
       }
+
+      // Redirige vers Growth OS root (/ redirigera automatiquement selon le rôle)
+      window.location.href = `${growthOsUrl}/`;
     }
   }, [router]);
 

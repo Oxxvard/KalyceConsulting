@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { User } from "lucide-react";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -102,7 +103,14 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:block ml-auto">
+        <div className="hidden lg:flex ml-auto items-center gap-8">
+          <Link
+            href="/growth-os"
+            className="text-white hover:text-white/70 transition-colors duration-200"
+            title="Accéder à mon espace"
+          >
+            <User size={20} strokeWidth={1.5} />
+          </Link>
           <Link
             href="/contact"
             className="text-sm font-medium px-5 py-2 rounded-lg bg-white text-[#1a0e2d] hover:bg-gray-100 transition-all duration-200"
@@ -136,11 +144,19 @@ export default function Navbar() {
               </li>
             );
           })}
-          <li className="pt-3">
+          <li className="pt-3 flex gap-2 items-center justify-between">
+            <Link
+              href="/growth-os"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-white hover:text-white/70 transition-colors duration-200"
+              title="Accéder à mon espace"
+            >
+              <User size={20} strokeWidth={1.5} />
+            </Link>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center text-sm font-medium px-5 py-3 rounded-lg bg-white text-[#1a0e2d]"
+              className="flex-1 text-center text-sm font-medium px-3 py-3 rounded-lg bg-white text-[#1a0e2d]"
             >
               Démarrer un projet
             </Link>
