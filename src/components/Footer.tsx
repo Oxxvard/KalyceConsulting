@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "./Logo";
+import KalyceLockup from "./KalyceLockup";
 import NewsletterForm from "./NewsletterForm";
 
 const discoverLinks = [
@@ -35,7 +35,7 @@ export default function Footer() {
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors self-start md:self-auto"
+            className="inline-flex items-center gap-2 bg-white text-[#0B1220] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors self-start md:self-auto"
           >
             <svg
               className="w-4 h-4"
@@ -60,8 +60,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
           {/* Logo */}
           <div>
-            <div className="brightness-0 invert">
-              <Logo height={56} />
+            <div style={{ fontFamily: "var(--font-archivo), system-ui, sans-serif" }}>
+              <KalyceLockup scale={1.35} />
             </div>
           </div>
 

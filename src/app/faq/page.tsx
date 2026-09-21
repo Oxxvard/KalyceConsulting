@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import FaqSection from "@/components/FaqSection";
 import HomeCta from "@/components/home/HomeCta";
 import { faqs } from "@/lib/faqs";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -24,6 +25,7 @@ const faqJsonLd = {
 export default function FaqPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="FAQ" href="/faq" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

@@ -31,7 +31,7 @@ export default function HomeCta() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#0B1220] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
             >
               Démarrer un projet
             </Link>

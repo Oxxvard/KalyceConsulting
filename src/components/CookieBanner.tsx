@@ -58,7 +58,7 @@ export default function CookieBanner() {
         </button>
         <button
           onClick={accept}
-          className="text-sm font-medium bg-white text-[#1a0e2d] px-4 py-2 rounded-full hover:bg-accent-light transition-colors"
+          className="text-sm font-medium bg-white text-[#0B1220] px-4 py-2 rounded-full hover:bg-accent-light transition-colors"
         >
           J&apos;accepte
         </button>

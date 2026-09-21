@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
 import HomeCta from "@/components/home/HomeCta";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Méthodologie",
@@ -91,6 +92,7 @@ const principles = [
 export default function MethodologiePage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Méthodologie" href="/methodologie" />
       <PageHero
         eyebrow="Méthodologie"
         title={

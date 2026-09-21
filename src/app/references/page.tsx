@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import HomeCta from "@/components/home/HomeCta";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Références",
@@ -15,6 +17,8 @@ export const metadata: Metadata = {
 const cases = [
   {
     sector: "Industrie · ETI",
+    image: "/images/secteurs/industrie.webp",
+    imageAlt: "Site de production industrielle — illustration sectorielle",
     client: "Groupe industriel français",
     title: "Refonte de la stratégie de croissance internationale",
     context:
@@ -32,6 +36,8 @@ const cases = [
   },
   {
     sector: "Distribution · réseau",
+    image: "/images/secteurs/distribution.webp",
+    imageAlt: "Galerie commerciale d'un réseau de points de vente — illustration sectorielle",
     client: "Réseau de franchises",
     title: "Restructuration organisationnelle et performance opérationnelle",
     context:
@@ -49,6 +55,8 @@ const cases = [
   },
   {
     sector: "Numérique · scale-up",
+    image: "/images/secteurs/numerique.webp",
+    imageAlt: "Plateau de bureaux d'une entreprise technologique — illustration sectorielle",
     client: "Scale-up B2B SaaS",
     title: "Conduite du changement en hyper-croissance",
     context:
@@ -66,6 +74,8 @@ const cases = [
   },
   {
     sector: "Santé · établissement",
+    image: "/images/secteurs/sante.webp",
+    imageAlt: "Façade d'un établissement de santé — illustration sectorielle",
     client: "Groupe hospitalier privé",
     title: "Plan de transformation managériale",
     context:
@@ -83,6 +93,8 @@ const cases = [
   },
   {
     sector: "Secteur public",
+    image: "/images/secteurs/public.webp",
+    imageAlt: "Hôtel de ville et place publique — illustration sectorielle",
     client: "Collectivité territoriale",
     title: "Modernisation organisationnelle d'une direction de 600 agents",
     context:
@@ -100,6 +112,8 @@ const cases = [
   },
   {
     sector: "Énergie · ETI",
+    image: "/images/secteurs/energie.webp",
+    imageAlt: "Parc éolien vu du ciel — illustration sectorielle",
     client: "Acteur des énergies renouvelables",
     title: "Plan stratégique 2030 et préparation à la levée de fonds",
     context:
@@ -131,6 +145,7 @@ const sectorsServed = [
 export default function ReferencesPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Références" href="/references" />
       <PageHero
         eyebrow="Références"
         title={
@@ -176,6 +191,19 @@ export default function ReferencesPage() {
               className="grid grid-cols-1 lg:grid-cols-12 liquid-glass rounded-3xl border border-white/10 overflow-hidden"
             >
               <div className="bg-bg-mauve text-white p-8 lg:p-10 lg:col-span-4 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+                {/* Visuel d'ambiance du secteur — photo libre de droit (Pexels),
+                    pas une image du client, d'où l'alt explicite. */}
+                <Image
+                  src={c.image}
+                  alt={c.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-br from-bg/90 via-bg/75 to-bg-mauve/85"
+                />
                 <div
                   aria-hidden="true"
                   className="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-primary/25 blur-2xl"
@@ -240,7 +268,7 @@ export default function ReferencesPage() {
         <FadeIn className="text-center mt-14">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-[#0B1220] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
           >
             Discuter de votre projet
           </Link>
