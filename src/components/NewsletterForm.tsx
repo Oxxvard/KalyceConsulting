@@ -74,7 +74,7 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-full bg-white text-[#1a0e2d] text-sm font-medium px-7 py-3 hover:bg-accent-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="rounded-full bg-white text-[#0B1220] text-sm font-medium px-7 py-3 hover:bg-accent-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "loading" ? "Envoi…" : "S'inscrire"}
       </button>

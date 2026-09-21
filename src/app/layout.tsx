@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
+import { Archivo } from "next/font/google";
 import "./globals.css";
+
+// Police auto-hébergée par Next : supprime la requête bloquante vers
+// Google Fonts et les deux preconnect associés.
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-archivo",
+});
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
@@ -36,12 +46,21 @@ export const metadata: Metadata = {
     title: "Kalyce Consulting | Conseil en Management & Stratégie",
     description:
       "Cabinet de conseil accompagnant dirigeants et comités exécutifs dans leur transformation stratégique.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kalyce Consulting — Transformer la décision en résultat, Côte d'Azur",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kalyce Consulting | Conseil en Management",
     description:
       "Cabinet de conseil en management : stratégie, transformation, performance.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -53,10 +72,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/KalyceLogo.svg",
-    apple: "/KalyceLogo.svg",
-  },
   category: "business",
 };
 
@@ -67,12 +82,19 @@ const organizationJsonLd = {
   description:
     "Cabinet de conseil en management : stratégie d'entreprise, conduite du changement, performance organisationnelle.",
   url: siteUrl,
-  logo: `${siteUrl}/KalyceLogo.svg`,
+  logo: `${siteUrl}/icon.png`,
+  image: `${siteUrl}/og-image.jpg`,
+  email: "contact@kalyceconsulting.fr",
   address: {
     "@type": "PostalAddress",
+    addressRegion: "Provence-Alpes-Côte d'Azur",
     addressCountry: "FR",
   },
-  areaServed: "FR",
+  areaServed: [
+    { "@type": "Place", name: "Côte d'Azur" },
+    { "@type": "AdministrativeArea", name: "Alpes-Maritimes" },
+    { "@type": "Country", name: "France" },
+  ],
   serviceType: [
     "Conseil en stratégie",
     "Conduite du changement",
@@ -88,18 +110,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="scroll-smooth">
+    <html lang="fr" className={`${archivo.variable} scroll-smooth`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

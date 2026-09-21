@@ -348,7 +348,7 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full bg-white text-[#1a0e2d] font-medium text-sm px-6 py-4 rounded-full hover:bg-accent-light transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="w-full bg-white text-[#0B1220] font-medium text-sm px-6 py-4 rounded-full hover:bg-accent-light transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   Envoyer ma demande
                 </button>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
 import HomeCta from "@/components/home/HomeCta";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -65,6 +66,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Services" href="/services" />
       <PageHero
         eyebrow="Services"
         title={

@@ -4,7 +4,13 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "lucide-react";
-import Logo from "./Logo";
+import KalyceLockup from "./KalyceLockup";
+
+/**
+ * Nav reprise du design Claude « Kalyce Hero.dc.html » :
+ * monogramme détouré + wordmark, pastille de liens en verre dépoli,
+ * CTA doré. Les destinations restent celles de l'application.
+ */
 
 const navLinks = [
   { label: "Accueil", href: "/" },
@@ -13,8 +19,10 @@ const navLinks = [
   { label: "Références", href: "/references" },
   { label: "À propos", href: "/a-propos" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
 ];
+
+const INK = "#0B1220";
+const GOLD = "#C8A272";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,6 +40,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Le menu mobile ouvert ne doit pas rester ouvert d'une page à l'autre
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -42,123 +55,239 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
-      style={{ padding: "1.25rem 1.5rem 0" }}
+      style={{
+        fontFamily: "var(--font-archivo), system-ui, sans-serif",
+        animation: "k-fade-down .9s cubic-bezier(.22,1,.36,1) .05s both",
+      }}
     >
       <nav
-        className="relative mx-auto flex max-w-7xl items-center liquid-glass rounded-xl px-5 py-2.5 transition-all duration-300"
         aria-label="Navigation principale"
+        style={{
+          position: "relative",
+          zIndex: 4,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 24,
+          padding: "20px clamp(16px,3.2vw,44px)",
+        }}
       >
-        {/* Hamburger - mobile */}
+        {/* Logo — monogramme détouré + wordmark */}
+        <Link
+          href="/"
+          aria-label="Kalyce Consulting — accueil"
+          style={{ display: "flex", flex: "none" }}
+        >
+          <KalyceLockup />
+        </Link>
+
+        {/* Pastille de liens — desktop large */}
+        <div
+          className="kh-pill"
+          style={{
+            alignItems: "center",
+            gap: 6,
+            padding: "7px 10px",
+            border: "1px solid rgba(237,231,220,.13)",
+            borderRadius: 999,
+            background: "rgba(237,231,220,.045)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            fontSize: 12,
+            fontWeight: 500,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="kh-navlink"
+              data-active={isActive(link.href)}
+              style={{ padding: "8px 16px", borderRadius: 999 }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/growth-os"
+            className="kh-navlink"
+            title="Accéder à mon espace"
+            aria-label="Accéder à mon espace"
+            style={{
+              padding: "8px 12px",
+              borderRadius: 999,
+              display: "inline-flex",
+            }}
+          >
+            <User size={16} strokeWidth={1.5} />
+          </Link>
+          <Link
+            href="/contact"
+            className="kh-cta"
+            style={{
+              padding: "8px 18px",
+              borderRadius: 999,
+              background: GOLD,
+              color: INK,
+              fontWeight: 600,
+            }}
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Déclencheur mobile / tablette */}
         <button
-          className="lg:hidden flex flex-col items-center justify-center w-10 h-10 mr-4"
+          className="kh-burger"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
           aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          style={{
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 5,
+            width: 44,
+            height: 44,
+            flex: "none",
+            border: "1px solid rgba(237,231,220,.13)",
+            borderRadius: 999,
+            background: "rgba(237,231,220,.045)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            cursor: "pointer",
+          }}
         >
           <span
-            className={`block w-6 h-[2px] bg-white transition-all duration-200 ${
-              mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
-            }`}
+            style={{
+              display: "block",
+              width: 18,
+              height: 1.5,
+              background: "#EDE7DC",
+              borderRadius: 2,
+              transition: "transform .2s ease",
+              transform: mobileMenuOpen
+                ? "translateY(6.5px) rotate(45deg)"
+                : "none",
+            }}
           />
           <span
-            className={`block w-6 h-[2px] mt-[5px] bg-white transition-all duration-200 ${
-              mobileMenuOpen ? "opacity-0" : ""
-            }`}
+            style={{
+              display: "block",
+              width: 18,
+              height: 1.5,
+              background: "#EDE7DC",
+              borderRadius: 2,
+              transition: "opacity .2s ease",
+              opacity: mobileMenuOpen ? 0 : 1,
+            }}
           />
           <span
-            className={`block w-6 h-[2px] mt-[5px] bg-white transition-all duration-200 ${
-              mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-            }`}
+            style={{
+              display: "block",
+              width: 18,
+              height: 1.5,
+              background: "#EDE7DC",
+              borderRadius: 2,
+              transition: "transform .2s ease",
+              transform: mobileMenuOpen
+                ? "translateY(-6.5px) rotate(-45deg)"
+                : "none",
+            }}
           />
         </button>
-
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex-shrink-0 brightness-0 invert transition-all duration-300"
-        >
-          <Logo height={34} />
-        </Link>
-
-        {/* Desktop links — centered */}
-        <ul className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-sm transition-colors duration-200 ${
-                    active
-                      ? "text-white font-medium"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Desktop CTA */}
-        <div className="hidden lg:flex ml-auto items-center gap-8">
-          <Link
-            href="/growth-os"
-            className="text-white hover:text-white/70 transition-colors duration-200"
-            title="Accéder à mon espace"
-          >
-            <User size={20} strokeWidth={1.5} />
-          </Link>
-          <Link
-            href="/contact"
-            className="text-sm font-medium px-5 py-2 rounded-lg bg-white text-[#1a0e2d] hover:bg-gray-100 transition-all duration-200"
-          >
-            Démarrer un projet
-          </Link>
-        </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Panneau mobile — même matière que la pastille */}
       <div
         id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-all duration-300 liquid-glass rounded-b-xl mx-0 mt-1 ${
-          mobileMenuOpen ? "max-h-[500px]" : "max-h-0"
-        }`}
+        className="kh-mobile-panel"
+        style={{
+          overflow: "hidden",
+          margin: "0 clamp(16px,3.2vw,44px)",
+          maxHeight: mobileMenuOpen ? 520 : 0,
+          opacity: mobileMenuOpen ? 1 : 0,
+          transition: "max-height .35s ease, opacity .25s ease",
+        }}
       >
-        <ul className="flex flex-col gap-1 px-6 py-4">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`block py-3 font-medium text-sm transition-colors border-b border-white/10 last:border-0 ${
-                    active ? "text-white" : "text-white/70"
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-          <li className="pt-3 flex gap-2 items-center justify-between">
+        <ul
+          style={{
+            listStyle: "none",
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            margin: 0,
+            padding: 10,
+            border: "1px solid rgba(237,231,220,.13)",
+            borderRadius: 22,
+            /* Opaque et non translucide : le titre du hero, très contrasté,
+               transparaissait derrière le menu et le rendait illisible. */
+            background: INK,
+            boxShadow: "0 24px 60px rgba(4,8,16,.45)",
+            fontSize: 12,
+            fontWeight: 500,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="kh-navlink"
+                data-active={isActive(link.href)}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  display: "block",
+                  padding: "13px 16px",
+                  borderRadius: 14,
+                }}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 6,
+            }}
+          >
             <Link
               href="/growth-os"
+              className="kh-navlink"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white hover:text-white/70 transition-colors duration-200"
               title="Accéder à mon espace"
+              aria-label="Accéder à mon espace"
+              style={{
+                display: "inline-flex",
+                padding: "13px 15px",
+                borderRadius: 14,
+                border: "1px solid rgba(237,231,220,.13)",
+              }}
             >
-              <User size={20} strokeWidth={1.5} />
+              <User size={16} strokeWidth={1.5} />
             </Link>
             <Link
               href="/contact"
+              className="kh-cta"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex-1 text-center text-sm font-medium px-3 py-3 rounded-lg bg-white text-[#1a0e2d]"
+              style={{
+                flex: 1,
+                textAlign: "center",
+                padding: "14px 18px",
+                borderRadius: 14,
+                background: GOLD,
+                color: INK,
+                fontWeight: 600,
+              }}
             >
-              Démarrer un projet
+              Contact
             </Link>
           </li>
         </ul>

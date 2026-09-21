@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
 import HomeCta from "@/components/home/HomeCta";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -37,16 +38,20 @@ const values = [
   },
 ];
 
+// Cabinet récemment créé : pas d'historique à afficher. Ces valeurs décrivent
+// l'offre et les engagements, et sont toutes vérifiables ailleurs sur le site
+// (pages Services, Méthodologie, FAQ).
 const figures = [
-  { value: "15", label: "années d'expertise" },
-  { value: "150+", label: "missions menées" },
-  { value: "50+", label: "clients accompagnés" },
-  { value: "12", label: "secteurs couverts" },
+  { value: "4", label: "métiers couverts" },
+  { value: "4", label: "étapes de méthode" },
+  { value: "3 sem.", label: "pour le diagnostic" },
+  { value: "24 h", label: "délai de réponse" },
 ];
 
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="À propos" href="/a-propos" />
       <PageHero
         eyebrow="À propos"
         title={
