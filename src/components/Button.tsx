@@ -21,9 +21,9 @@ export default function Button({
     "inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium text-sm transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
   const variants = {
-    primary: "bg-primary text-white hover:bg-primary-dark",
+    primary: "bg-primary text-ink hover:bg-primary-dark",
     outline:
-      "border-2 border-primary text-primary hover:bg-primary hover:text-white",
+      "border-2 border-primary text-primary hover:bg-primary hover:text-ink",
   };
 
   const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;

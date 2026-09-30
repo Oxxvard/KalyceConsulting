@@ -5,7 +5,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left column - main text */}
           <div>
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-8">
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-8">
               À propos
             </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">

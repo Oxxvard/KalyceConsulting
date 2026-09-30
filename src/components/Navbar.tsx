@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/routing";
 import { User } from "lucide-react";
 import KalyceLockup from "./KalyceLockup";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 /**
  * Nav reprise du design Claude « Kalyce Hero.dc.html » :
@@ -12,19 +13,22 @@ import KalyceLockup from "./KalyceLockup";
  * CTA doré. Les destinations restent celles de l'application.
  */
 
+/** Les chemins restent en français : ce sont les URL du site. Seuls les
+ *  libellés sont traduits. */
 const navLinks = [
-  { label: "Accueil", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Méthodologie", href: "/methodologie" },
-  { label: "Références", href: "/references" },
-  { label: "À propos", href: "/a-propos" },
-  { label: "FAQ", href: "/faq" },
-];
+  { key: "home", href: "/" },
+  { key: "services", href: "/services" },
+  { key: "method", href: "/methodologie" },
+  { key: "references", href: "/references" },
+  { key: "about", href: "/a-propos" },
+  { key: "faq", href: "/faq" },
+] as const;
 
 const INK = "#0B1220";
 const GOLD = "#C8A272";
 
 export default function Navbar() {
+  const t = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -56,12 +60,12 @@ export default function Navbar() {
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
       style={{
-        fontFamily: "var(--font-archivo), system-ui, sans-serif",
+        fontFamily: "var(--font-body), system-ui, sans-serif",
         animation: "k-fade-down .9s cubic-bezier(.22,1,.36,1) .05s both",
       }}
     >
       <nav
-        aria-label="Navigation principale"
+        aria-label={t("main_aria")}
         style={{
           position: "relative",
           zIndex: 4,
@@ -75,7 +79,7 @@ export default function Navbar() {
         {/* Logo — monogramme détouré + wordmark */}
         <Link
           href="/"
-          aria-label="Kalyce Consulting — accueil"
+          aria-label={t("home_aria")}
           style={{ display: "flex", flex: "none" }}
         >
           <KalyceLockup />
@@ -88,11 +92,12 @@ export default function Navbar() {
             alignItems: "center",
             gap: 6,
             padding: "7px 10px",
-            border: "1px solid rgba(237,231,220,.13)",
+            border: "1px solid rgba(237,231,220,.18)",
             borderRadius: 999,
-            background: "rgba(237,231,220,.045)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            background: "rgba(11,18,32,.58)",
+            backdropFilter: "blur(14px) saturate(1.2)",
+            WebkitBackdropFilter: "blur(14px) saturate(1.2)",
+            boxShadow: "0 8px 30px rgba(4,8,16,.35)",
             fontSize: 12,
             fontWeight: 500,
             letterSpacing: "0.1em",
@@ -107,14 +112,15 @@ export default function Navbar() {
               data-active={isActive(link.href)}
               style={{ padding: "8px 16px", borderRadius: 999 }}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
+          <LanguageSwitcher />
           <Link
             href="/growth-os"
             className="kh-navlink"
-            title="Accéder à mon espace"
-            aria-label="Accéder à mon espace"
+            title={t("clientArea")}
+            aria-label={t("clientArea")}
             style={{
               padding: "8px 12px",
               borderRadius: 999,
@@ -134,7 +140,7 @@ export default function Navbar() {
               fontWeight: 600,
             }}
           >
-            Contact
+            {t("contact")}
           </Link>
         </div>
 
@@ -144,7 +150,7 @@ export default function Navbar() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
-          aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={mobileMenuOpen ? t("closeMenu") : t("openMenu")}
           style={{
             flexDirection: "column",
             alignItems: "center",
@@ -153,11 +159,12 @@ export default function Navbar() {
             width: 44,
             height: 44,
             flex: "none",
-            border: "1px solid rgba(237,231,220,.13)",
+            border: "1px solid rgba(237,231,220,.18)",
             borderRadius: 999,
-            background: "rgba(237,231,220,.045)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            background: "rgba(11,18,32,.58)",
+            backdropFilter: "blur(14px) saturate(1.2)",
+            WebkitBackdropFilter: "blur(14px) saturate(1.2)",
+            boxShadow: "0 8px 30px rgba(4,8,16,.35)",
             cursor: "pointer",
           }}
         >
@@ -246,10 +253,13 @@ export default function Navbar() {
                   borderRadius: 14,
                 }}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             </li>
           ))}
+          <li style={{ padding: "10px 4px 4px" }}>
+            <LanguageSwitcher variant="panel" />
+          </li>
           <li
             style={{
               display: "flex",
@@ -262,8 +272,8 @@ export default function Navbar() {
               href="/growth-os"
               className="kh-navlink"
               onClick={() => setMobileMenuOpen(false)}
-              title="Accéder à mon espace"
-              aria-label="Accéder à mon espace"
+              title={t("clientArea")}
+              aria-label={t("clientArea")}
               style={{
                 display: "inline-flex",
                 padding: "13px 15px",
@@ -287,7 +297,7 @@ export default function Navbar() {
                 fontWeight: 600,
               }}
             >
-              Contact
+              {t("contact")}
             </Link>
           </li>
         </ul>

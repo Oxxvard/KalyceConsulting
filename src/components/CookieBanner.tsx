@@ -1,10 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "kalyce_cookie_choice";
 
 export default function CookieBanner() {
+  const t = useTranslations("cookies");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -36,17 +39,16 @@ export default function CookieBanner() {
     <div
       role="dialog"
       aria-live="polite"
-      aria-label="Bandeau cookies"
+      aria-label={t("aria")}
       className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[60] liquid-glass rounded-2xl border border-white/15 p-5"
     >
       <p className="text-sm text-text-light leading-relaxed">
-        Nous n&apos;utilisons que des cookies strictement nécessaires au
-        fonctionnement du site. Aucun cookie de traçage publicitaire.{" "}
+        {t("text")}{" "}
         <a
           href="/confidentialite"
           className="text-primary underline underline-offset-2 hover:text-primary-dark"
         >
-          En savoir plus
+          {t("link")}
         </a>
       </p>
       <div className="mt-4 flex gap-2 justify-end">
@@ -54,13 +56,13 @@ export default function CookieBanner() {
           onClick={decline}
           className="text-sm font-medium text-text-light hover:text-white px-3 py-2 rounded-full transition-colors"
         >
-          Refuser
+          {t("decline")}
         </button>
         <button
           onClick={accept}
           className="text-sm font-medium bg-white text-[#0B1220] px-4 py-2 rounded-full hover:bg-accent-light transition-colors"
         >
-          J&apos;accepte
+          {t("accept")}
         </button>
       </div>
     </div>
