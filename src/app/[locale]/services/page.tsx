@@ -1,89 +1,68 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
 import HomeCta from "@/components/home/HomeCta";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Conseil en stratégie d'entreprise, conduite du changement, performance organisationnelle et accompagnement des dirigeants.",
-  alternates: { canonical: "/services" },
-};
+/**
+ * Titre et description par langue, et liens hreflang vers les autres
+ * versions : sans cela, /de/services se présentait à Google avec un titre
+ * et une description en français.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const nav = await getTranslations({ locale, namespace: "nav" });
+  const tp = await getTranslations({ locale, namespace: "pages" });
+  const path = "/services";
+  const url = (l: string) =>
+    l === routing.defaultLocale
+      ? `https://www.kalyceconsulting.fr${path}`
+      : `https://www.kalyceconsulting.fr/${l}${path}`;
 
-const services = [
-  {
-    title: "Stratégie d'entreprise",
-    summary:
-      "Construire une vision claire, prioriser les chantiers et aligner toute l'organisation sur une trajectoire de croissance.",
-    items: [
-      "Diagnostic stratégique et analyse concurrentielle",
-      "Définition de la vision et du plan stratégique 3-5 ans",
-      "Stratégies de croissance organique et externe (M&A)",
-      "Diversification, internationalisation, partenariats",
-      "Réflexion sur le business model et la proposition de valeur",
-    ],
-  },
-  {
-    title: "Conduite du changement",
-    summary:
-      "Embarquer les équipes, ancrer les nouveaux comportements et faire de la transformation une dynamique durable.",
-    items: [
-      "Cadrage des grands programmes de transformation",
-      "Plan de communication et d'embarquement",
-      "Diagnostic culturel et leviers d'évolution",
-      "Formation des managers et acculturation des équipes",
-      "Pilotage de l'impact et mesure de l'adhésion",
-    ],
-  },
-  {
-    title: "Organisation & Performance",
-    summary:
-      "Aligner la structure, les processus et la gouvernance sur les ambitions stratégiques pour gagner en agilité et en efficacité.",
-    items: [
-      "Refonte du modèle opérationnel (TOM)",
-      "Optimisation des processus et chaîne de valeur",
-      "Gouvernance, instances de pilotage, rôles et responsabilités",
-      "Performance opérationnelle et excellence d'exécution",
-      "Programmes de réduction de coûts maîtrisés",
-    ],
-  },
-  {
-    title: "Accompagnement dirigeants",
-    summary:
-      "Un sparring partner exigeant et bienveillant pour les décideurs sur leurs sujets sensibles.",
-    items: [
-      "Coaching individuel de dirigeants et de comités exécutifs",
-      "Accompagnement à la prise de poste",
-      "Préparation de décisions stratégiques structurantes",
-      "Animation de séminaires de codir / comex",
-      "Médiation et alignement d'équipes dirigeantes",
-    ],
-  },
-];
+  return {
+    title: nav("services"),
+    description: tp("servicesMD"),
+    alternates: {
+      canonical: url(locale),
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, url(l)])),
+        "x-default": url(routing.defaultLocale),
+      },
+    },
+  };
+}
+
+
+const services = ["s1", "s2", "s3", "s4"] as const;
+const ITEMS = ["i1", "i2", "i3", "i4", "i5"] as const;
 
 export default function ServicesPage() {
+  const nav = useTranslations("nav");
+  const sp = useTranslations("servicesPage");
+  const tp = useTranslations("pages");
+
   return (
     <>
       <BreadcrumbJsonLd name="Services" href="/services" />
       <PageHero
-        eyebrow="Services"
-        title={
-          <>
-            Quatre métiers,{" "}
-            <em className="text-primary not-italic font-semibold italic">
-              une exigence partagée.
-            </em>
-          </>
-        }
-        description="Nos missions s'organisent autour de quatre expertises complémentaires. Toutes répondent à la même promesse : une approche rigoureuse, un transfert de savoir-faire et un impact mesurable."
+        eyebrow={nav("services")}
+        title={tp("servicesT")}
+        titleEm={tp("servicesEm")}
+        description={tp("servicesD")}
       />
 
       <section className="py-20 lg:py-24 bg-bg">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 space-y-16 lg:space-y-20">
-          {services.map((s, i) => (
-            <FadeIn key={s.title}>
+          {services.map((key, i) => (
+            <FadeIn key={key}>
               <article
                 className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start ${
                   i % 2 === 1 ? "lg:[&>:first-child]:order-2" : ""
@@ -102,18 +81,18 @@ export default function ServicesPage() {
                     0{i + 1}
                   </span>
                   <h2 className="relative font-display text-2xl md:text-3xl font-bold mt-4">
-                    {s.title}
+                    {sp(`${key}t`)}
                   </h2>
                 </div>
 
                 <div className="lg:col-span-7">
                   <p className="text-text-light text-lg leading-relaxed mb-6">
-                    {s.summary}
+                    {sp(`${key}s`)}
                   </p>
                   <ul className="space-y-3">
-                    {s.items.map((item) => (
+                    {ITEMS.map((it) => (
                       <li
-                        key={item}
+                        key={it}
                         className="flex items-start gap-3 text-text-light text-sm"
                       >
                         <svg
@@ -128,7 +107,7 @@ export default function ServicesPage() {
                         >
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span>{item}</span>
+                        <span>{sp(`${key}${it}`)}</span>
                       </li>
                     ))}
                   </ul>

@@ -103,7 +103,7 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
         <FadeIn className="max-w-2xl mb-16">
-          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-8">
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-8">
             Services
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">

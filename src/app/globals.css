@@ -17,8 +17,8 @@
 
   /* Fonds sombres — encre du hero */
   --color-bg: #0b1220;
-  --color-bg-soft: #101a2b;
-  --color-bg-mauve: #141e30;
+  --color-bg-soft: #121b2b;
+  --color-bg-mauve: #18212f;
   --color-bg-dark: #070c15;
 
   /* Fonds clairs (sections en contraste) */
@@ -39,9 +39,10 @@
   --color-border-light: #d5ccba;
 
   /* Typography */
-  /* Typo unifiée sur Archivo, la police du design Kalyce. */
-  --font-display: var(--font-archivo), system-ui, sans-serif;
-  --font-body: var(--font-archivo), system-ui, sans-serif;
+  /* Une seule linéale, comme dans le modèle : le contraste vient des
+     graisses et du crénage, pas d'un mélange de familles. */
+  --font-display: var(--font-jakarta), system-ui, sans-serif;
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
@@ -229,15 +230,15 @@ body {
 }
 
 .kh-navlink {
-  color: rgba(237, 231, 220, 0.72);
+  color: rgba(246, 241, 231, 0.88);
   transition: color 0.2s ease, background 0.2s ease;
 }
 .kh-navlink:hover {
   color: #d8b78a;
 }
 .kh-navlink[data-active="true"] {
-  color: #f3eee5;
-  background: rgba(237, 231, 220, 0.08);
+  color: #0b1220;
+  background: rgba(230, 199, 155, 0.92);
 }
 
 .kh-cta {
@@ -279,4 +280,441 @@ body {
   .kh-mobile-panel {
     display: none;
   }
+}
+
+
+
+/* ---- Formulaire du hero ---- */
+
+/* Styles de champ tenus ici et non en inline : des styles inline
+   l'emporteraient sur les états :hover et :focus ci-dessous. */
+.kh-field {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(237, 231, 220, 0.14);
+  border-radius: 12px;
+  background: rgba(11, 18, 32, 0.55);
+  color: #f3eee5;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+textarea.kh-field {
+  line-height: 1.55;
+  resize: none;
+}
+.kh-field:hover {
+  border-color: rgba(237, 231, 220, 0.28);
+}
+.kh-field:focus {
+  border-color: #c8a272;
+  background: rgba(11, 18, 32, 0.72);
+  box-shadow: 0 0 0 3px rgba(200, 162, 114, 0.16);
+}
+
+.kh-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8e94a3;
+  transition: color 0.2s ease;
+}
+.kh-group:focus-within .kh-label {
+  color: #c8a272;
+}
+
+.kh-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.25s ease, transform 0.15s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 10px 28px rgba(200, 162, 114, 0.18);
+}
+.kh-submit:hover {
+  background: #e0c093;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(200, 162, 114, 0.28);
+}
+.kh-submit:active {
+  transform: translateY(0);
+}
+.kh-submit .kh-arrow {
+  transition: transform 0.25s ease;
+}
+.kh-submit:hover .kh-arrow {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   Hero cinématique — structure reprise du modèle Nixtio
+   (fond vidéo, titre à gauche, carte de qualification à droite)
+   ============================================================ */
+
+.kh-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  /* Sur mobile le contenu empilé dépasse la hauteur d'écran : on part du
+     haut, sinon le centrage le ferait glisser sous la nav. Le centrage
+     n'intervient qu'à partir du moment où il y a de la place (voir plus bas). */
+  justify-content: flex-start;
+  background: #0b1220;
+  overflow: hidden;
+}
+
+.kh-hero-video {
+  /* Le plan est tourné au crépuscule : on le relève plutôt que de se
+     contenter de retirer du voile, sinon l'image reste terne. */
+  filter: brightness(1.28) saturate(1.14) contrast(1.02);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.kh-scrim-v {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 18, 32, 0.55) 0%,
+    rgba(11, 18, 32, 0.04) 22%,
+    rgba(11, 18, 32, 0.1) 38%,
+    rgba(11, 18, 32, 0.58) 62%,
+    rgba(11, 18, 32, 0.8) 80%,
+    rgba(11, 18, 32, 0.94) 100%
+  );
+}
+/* Assombrit la colonne de texte sans étouffer la baie à droite */
+.kh-scrim-h {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 18, 32, 0.7) 0%,
+    rgba(11, 18, 32, 0.34) 36%,
+    rgba(11, 18, 32, 0) 64%,
+    rgba(11, 18, 32, 0) 100%
+  );
+}
+.kh-glow {
+  position: absolute;
+  left: 6%;
+  bottom: 14%;
+  width: min(70vw, 820px);
+  height: 58%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(200, 162, 114, 0.18),
+    rgba(200, 162, 114, 0) 68%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  animation: k-glow-a 24s ease-in-out infinite;
+}
+
+.kh-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  /* Le haut réserve la place de la nav, qui est en position fixed. */
+  padding: clamp(104px, 9vh, 116px) clamp(20px, 4vw, 48px)
+    clamp(56px, 10vh, 112px);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  gap: clamp(30px, 4vw, 56px);
+}
+
+.kh-hero-title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.4vw, 96px);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: #f6f1e7;
+  max-width: 13ch;
+}
+.kh-hero-title span {
+  display: block;
+}
+/* L'ombre porte la lisibilité localement, au lieu d'assombrir toute la vidéo */
+.kh-hero-title,
+.kh-hero-lede,
+.kh-hero-place {
+  text-shadow: 0 1px 2px rgba(4, 8, 16, 0.5), 0 2px 22px rgba(4, 8, 16, 0.7);
+}
+
+.kh-rise {
+  animation: k-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+.kh-rise-2 {
+  animation-delay: 0.48s;
+}
+.kh-rise-3 {
+  animation-delay: 0.61s;
+}
+
+/* Ligne médiane en retrait, comme dans le modèle */
+.kh-muted {
+  color: rgba(246, 241, 231, 0.52);
+}
+
+.kh-gold {
+  /* Couleur pleine, sans dégradé : le remplissage transparent qu'exige
+     `background-clip: text` laissait voir l'ombre portée au travers des
+     lettres, d'où un doré sale et un décalage optique. */
+  color: #e6c79b;
+  animation: k-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.61s both;
+}
+
+.kh-hero-lede {
+  margin: clamp(20px, 3vh, 30px) 0 0;
+  max-width: 48ch;
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: #d7dce5;
+  animation: k-fade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
+}
+
+.kh-hero-place {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: clamp(18px, 2.5vh, 26px) 0 0;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b4bac7;
+  animation: k-fade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+.kh-rule {
+  display: block;
+  width: clamp(28px, 4vw, 56px);
+  height: 1px;
+  background: linear-gradient(90deg, #c8a272, rgba(200, 162, 114, 0));
+}
+
+/* ---- Carte de qualification ---- */
+
+.kh-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(20px, 2vw, 26px);
+  border: 1px solid rgba(237, 231, 220, 0.2);
+  border-radius: 26px;
+  background: linear-gradient(
+    160deg,
+    rgba(11, 18, 32, 0.76),
+    rgba(11, 18, 32, 0.62)
+  );
+  backdrop-filter: blur(22px) saturate(1.1);
+  -webkit-backdrop-filter: blur(22px) saturate(1.1);
+  box-shadow: 0 30px 70px rgba(4, 8, 16, 0.5);
+  animation: k-fade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both;
+}
+
+.kh-card-title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #f6f1e7;
+  max-width: 14ch;
+}
+
+.kh-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.kh-seg {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(237, 231, 220, 0.14);
+  border-radius: 14px;
+  background: rgba(11, 18, 32, 0.55);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.kh-seg:hover {
+  border-color: rgba(237, 231, 220, 0.26);
+}
+.kh-seg:focus-within {
+  border-color: #c8a272;
+  background: rgba(11, 18, 32, 0.6);
+}
+.kh-seg-wide {
+  grid-column: 1 / -1;
+}
+
+.kh-seg-label {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8e94a3;
+  transition: color 0.2s ease;
+}
+.kh-seg:focus-within .kh-seg-label {
+  color: #c8a272;
+}
+
+.kh-seg-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Les valeurs en garalde : c'est ce qui sort la carte du formulaire banal */
+.kh-select,
+.kh-input {
+  width: 100%;
+  padding: 0;
+  padding-right: 14px;
+  border: none;
+  background: transparent;
+  color: #f6f1e7;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+.kh-input {
+  cursor: text;
+}
+.kh-input::placeholder {
+  color: rgba(246, 241, 231, 0.38);
+}
+.kh-select option {
+  background: #0b1220;
+  color: #f6f1e7;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 14px;
+}
+.kh-chevron {
+  position: absolute;
+  right: 0;
+  font-size: 9px;
+  color: #9aa0ae;
+  pointer-events: none;
+}
+
+.kh-card-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 2px;
+}
+.kh-card-price {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f6f1e7;
+}
+.kh-card-unit {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #9aa0ae;
+}
+.kh-card-side {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8a272;
+}
+
+.kh-card-cta {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 14px;
+  background: #c8a272;
+  color: #0b1220;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 12px 30px rgba(200, 162, 114, 0.22);
+}
+.kh-card-cta:hover {
+  background: #e0c093;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 38px rgba(200, 162, 114, 0.32);
+}
+.kh-card-cta:active {
+  transform: translateY(0);
+}
+
+/* À partir du grand écran, le titre et la carte se font face */
+@media (min-width: 1000px) {
+  .kh-hero {
+    justify-content: center;
+  }
+  .kh-hero-inner {
+    grid-template-columns: minmax(0, 1fr) 400px;
+  }
+}
+
+/* La vidéo apparaît en fondu depuis le fond encre. Un `poster` faisait
+   clignoter une image fixe au cadrage différent à chaque rechargement. */
+.kh-hero-video {
+  transition: opacity 0.7s ease;
+}
+
+/* ---- Sections sombres : sortir de l'aplat ----
+   Les fonds unis donnaient un site éteint. Deux halos — l'or du logo et le
+   bleu du crépuscule du hero — apportent de la profondeur sans quitter la
+   charte. Posés en ::before derrière le contenu, donc sans balisage en plus. */
+.kh-warm {
+  position: relative;
+  isolation: isolate;
+}
+.kh-warm::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 58% 52% at 10% -4%, rgba(200, 162, 114, 0.16), transparent 62%),
+    radial-gradient(ellipse 52% 58% at 94% 82%, rgba(86, 116, 168, 0.18), transparent 66%);
+}
+/* Variante pour les sections claires : même logique, intensité réduite */
+.kh-warm-light::before {
+  background:
+    radial-gradient(ellipse 58% 52% at 8% -6%, rgba(200, 162, 114, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 56% at 96% 86%, rgba(86, 116, 168, 0.1), transparent 64%);
 }

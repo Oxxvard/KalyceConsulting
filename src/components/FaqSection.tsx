@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import FadeIn from "./FadeIn";
-import { faqs } from "@/lib/faqs";
+import { useTranslations } from "next-intl";
+import { faqKeys } from "@/lib/faqs";
 
 export default function FaqSection() {
+  const t = useTranslations("faqs");
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -15,7 +18,7 @@ export default function FaqSection() {
     >
       <div className="mx-auto max-w-4xl px-4 lg:px-8">
         <FadeIn className="text-center mb-14">
-          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-6">
             Questions fréquentes
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
@@ -27,11 +30,11 @@ export default function FaqSection() {
         </FadeIn>
 
         <dl className="space-y-3">
-          {faqs.map((item, i) => {
+          {faqKeys.map((n, i) => {
             const open = openIndex === i;
             return (
               <FadeIn
-                key={item.q}
+                key={t(`q${n}`)}
                 delay={i * 40}
                 className="liquid-glass rounded-2xl border border-white/10 overflow-hidden"
               >
@@ -44,7 +47,7 @@ export default function FaqSection() {
                     className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
                   >
                     <span className="font-medium text-white text-base">
-                      {item.q}
+                      {t(`q${n}`)}
                     </span>
                     <svg
                       className={`w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300 ${
@@ -66,7 +69,7 @@ export default function FaqSection() {
                   hidden={!open}
                   className="px-6 pb-5 text-text-light text-sm leading-relaxed"
                 >
-                  {item.a}
+                  {t(`a${n}`)}
                 </dd>
               </FadeIn>
             );

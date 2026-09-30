@@ -7,11 +7,7 @@ import HomeReferencesPreview from "@/components/home/HomeReferencesPreview";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import HomeCta from "@/components/home/HomeCta";
 
-export const metadata = {
-  title: "Kalyce Consulting | Conseil en Management & Stratégie",
-  description:
-    "Cabinet de conseil en management. Stratégie d'entreprise, conduite du changement et performance organisationnelle au service des dirigeants.",
-};
+
 
 export default function Home() {
   return (

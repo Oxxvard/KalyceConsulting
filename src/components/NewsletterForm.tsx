@@ -1,10 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function NewsletterForm() {
+  const t = useTranslations("newsletter");
+  const f = useTranslations("footer");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -28,20 +32,20 @@ export default function NewsletterForm() {
 
       if (!res.ok || !data.ok) {
         setStatus("error");
-        setMessage(data.error ?? "Une erreur est survenue, réessayez.");
+        setMessage(data.error ?? t("error"));
         return;
       }
 
       setStatus("success");
       setMessage(
         data.alreadySubscribed
-          ? "Vous êtes déjà inscrit(e). Merci !"
-          : "Merci pour votre inscription.",
+          ? t("already")
+          : t("thanks"),
       );
       setEmail("");
     } catch {
       setStatus("error");
-      setMessage("Connexion impossible, réessayez dans un instant.");
+      setMessage(t("offline"));
     }
   };
 
@@ -68,7 +72,7 @@ export default function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         disabled={status === "loading"}
-        placeholder="Adresse email"
+        placeholder={f("emailPlaceholder")}
         className="flex-1 rounded-full border border-white/15 bg-white/10 backdrop-blur-sm px-5 py-3 text-sm text-white placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors disabled:opacity-60"
       />
       <button
@@ -76,7 +80,7 @@ export default function NewsletterForm() {
         disabled={status === "loading"}
         className="rounded-full bg-white text-[#0B1220] text-sm font-medium px-7 py-3 hover:bg-accent-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "loading" ? "Envoi…" : "S'inscrire"}
+        {status === "loading" ? t("sending") : f("subscribe")}
       </button>
       {status === "error" && message && (
         <p

@@ -1,39 +1,30 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import FadeIn from "../FadeIn";
 
 const pillars = [
-  {
-    label: "01",
-    title: "Indépendance",
-    text: "Aucune commission, aucun produit à vendre. Notre seul intérêt : la réussite de votre transformation.",
-  },
-  {
-    label: "02",
-    title: "Profondeur",
-    text: "Des consultants seniors, anciens dirigeants ou experts sectoriels. Pas de pyramide, du fond.",
-  },
-  {
-    label: "03",
-    title: "Engagement",
-    text: "Des contrats clairs, un cadrage rigoureux, et une présence aux côtés de vos équipes jusqu'à l'impact.",
-  },
-];
+  { label: "01", key: "p1" },
+  { label: "02", key: "p2" },
+  { label: "03", key: "p3" },
+] as const;
 
 export default function HomeApproach() {
+  const t = useTranslations("home");
+
   return (
     <section
-      className="py-20 lg:py-28 bg-bg-light"
+      className="py-20 lg:py-28 bg-bg-light kh-warm kh-warm-light"
       aria-label="Notre approche"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <FadeIn className="max-w-2xl mb-14">
-          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
-            Notre approche
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-6">
+            {t("approachEyebrow")}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-ink leading-tight">
-            Trois principes qui guident{" "}
+            {t("approachTitle")}{" "}
             <em className="text-primary-dark not-italic font-semibold italic">
-              chacune de nos missions.
+              {t("approachTitleEm")}
             </em>
           </h2>
         </FadeIn>
@@ -49,10 +40,10 @@ export default function HomeApproach() {
                 {p.label}
               </div>
               <h3 className="font-display text-xl font-semibold text-ink mb-3">
-                {p.title}
+                {t(`${p.key}Title`)}
               </h3>
               <p className="text-ink-light text-sm leading-relaxed">
-                {p.text}
+                {t(`${p.key}Text`)}
               </p>
             </FadeIn>
           ))}
@@ -63,7 +54,7 @@ export default function HomeApproach() {
             href="/methodologie"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary-dark hover:text-primary group"
           >
-            Découvrir notre méthodologie
+            {t("approachLink")}
             <span className="transition-transform group-hover:translate-x-1">
               →
             </span>

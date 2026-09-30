@@ -1,44 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useState } from "react";
 
-const sectors = [
-  "Industrie",
-  "Services B2B",
-  "Santé",
-  "Secteur public",
-  "Énergie & utilities",
-  "Retail & distribution",
-  "Finance & assurance",
-  "Tech & numérique",
-  "Autre",
-];
+const sectors = ["sec1", "sec2", "sec3", "sec4", "sec5", "sec6", "sec7", "sec8", "sec9"] as const;
 
-const budgets = [
-  "Moins de 25 000 €",
-  "25 000 € – 75 000 €",
-  "75 000 € – 200 000 €",
-  "Plus de 200 000 €",
-  "Je ne sais pas encore",
-];
+const budgets = ["bud1", "bud2", "bud3", "bud4", "bud5"] as const;
 
-const services = [
-  "Stratégie d'entreprise",
-  "Conduite du changement",
-  "Organisation & performance",
-  "Accompagnement dirigeants",
-  "Diagnostic exploratoire",
-  "Autre / à définir",
-];
+const services = ["srv1", "srv2", "srv3", "srv4", "srv5", "srv6"] as const;
 
-const timelines = [
-  "Immédiat (< 1 mois)",
-  "Court terme (1 – 3 mois)",
-  "Moyen terme (3 – 6 mois)",
-  "Long terme (> 6 mois)",
-];
+const timelines = ["del1", "del2", "del3", "del4"] as const;
 
 export default function ContactSection() {
+  const c = useTranslations("contactForm");
+  const nav = useTranslations("nav");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,18 +28,17 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16">
           {/* Left column - intro + info */}
           <aside>
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-6">
-              Contact
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-6">
+              {nav("contact")}
             </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Parlons de votre{" "}
+              {c("h2")}{" "}
               <em className="text-primary not-italic font-semibold italic">
-                prochain projet.
+                {c("h2em")}
               </em>
             </h2>
             <p className="mt-5 text-text-light text-base leading-relaxed">
-              Échangeons sans engagement sur vos enjeux stratégiques. Notre
-              équipe vous répond sous 48 heures ouvrées.
+              {c("lede")}
             </p>
 
             <ul className="mt-10 space-y-5">
@@ -149,11 +124,10 @@ export default function ContactSection() {
 
             <div className="mt-10 liquid-glass rounded-2xl border border-white/10 p-5">
               <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-1">
-                Confidentialité
+                {c("confidentialTitle")}
               </p>
               <p className="text-text-light text-sm leading-relaxed">
-                Vos données restent strictement confidentielles et ne sont
-                jamais transmises à des tiers.
+                {c("confidential")}
               </p>
             </div>
           </aside>
@@ -179,26 +153,26 @@ export default function ContactSection() {
                   </svg>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white mb-3">
-                  Merci pour votre message
+                  {c("thanks")}
                 </h3>
                 <p className="text-text-light text-sm">
-                  Nous reviendrons vers vous sous 48 heures ouvrées.
+                  {c("thanksText")}
                 </p>
               </div>
             ) : (
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field id="prenom" label="Prénom" required>
+                  <Field id="prenom" label={c("firstName")} required>
                     <input
                       type="text"
                       id="prenom"
                       name="prenom"
                       required
                       className={inputClass}
-                      placeholder="Marie"
+                      placeholder={c("firstNamePh")}
                     />
                   </Field>
-                  <Field id="nom" label="Nom" required>
+                  <Field id="nom" label={c("lastName")} required>
                     <input
                       type="text"
                       id="nom"
@@ -211,7 +185,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field id="email" label="Email professionnel" required>
+                  <Field id="email" label={c("email")} required>
                     <input
                       type="email"
                       id="email"
@@ -221,109 +195,109 @@ export default function ContactSection() {
                       placeholder="marie@entreprise.fr"
                     />
                   </Field>
-                  <Field id="telephone" label="Téléphone">
+                  <Field id="telephone" label={c("phone")}>
                     <input
                       type="tel"
                       id="telephone"
                       name="telephone"
                       className={inputClass}
-                      placeholder="06 12 34 56 78"
+                      placeholder={c("phonePh")}
                     />
                   </Field>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field id="entreprise" label="Entreprise" required>
+                  <Field id="entreprise" label={c("company")} required>
                     <input
                       type="text"
                       id="entreprise"
                       name="entreprise"
                       required
                       className={inputClass}
-                      placeholder="Nom de votre société"
+                      placeholder={c("companyPh")}
                     />
                   </Field>
-                  <Field id="poste" label="Fonction">
+                  <Field id="poste" label={c("role")}>
                     <input
                       type="text"
                       id="poste"
                       name="poste"
                       className={inputClass}
-                      placeholder="Directeur Général"
+                      placeholder={c("rolePh")}
                     />
                   </Field>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field id="secteur" label="Secteur d'activité">
+                  <Field id="secteur" label={c("sector")}>
                     <select id="secteur" name="secteur" className={inputClass}>
-                      <option value="">Sélectionner…</option>
+                      <option value="">{c("select")}</option>
                       {sectors.map((s) => (
                         <option key={s} value={s}>
-                          {s}
+                          {c(s)}
                         </option>
                       ))}
                     </select>
                   </Field>
-                  <Field id="taille" label="Taille de l'entreprise">
+                  <Field id="taille" label={c("size")}>
                     <select id="taille" name="taille" className={inputClass}>
-                      <option value="">Sélectionner…</option>
-                      <option>1 – 49 collaborateurs</option>
-                      <option>50 – 249 collaborateurs</option>
-                      <option>250 – 999 collaborateurs</option>
-                      <option>1 000 – 5 000 collaborateurs</option>
-                      <option>Plus de 5 000 collaborateurs</option>
+                      <option value="">{c("select")}</option>
+                      <option>{c("size1")}</option>
+                      <option>{c("size2")}</option>
+                      <option>{c("size3")}</option>
+                      <option>{c("size4")}</option>
+                      <option>{c("size5")}</option>
                     </select>
                   </Field>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field id="service" label="Service souhaité" required>
+                  <Field id="service" label={c("service")} required>
                     <select
                       id="service"
                       name="service"
                       required
                       className={inputClass}
                     >
-                      <option value="">Sélectionner…</option>
+                      <option value="">{c("select")}</option>
                       {services.map((s) => (
                         <option key={s} value={s}>
-                          {s}
+                          {c(s)}
                         </option>
                       ))}
                     </select>
                   </Field>
-                  <Field id="echeance" label="Échéance">
+                  <Field id="echeance" label={c("deadline")}>
                     <select id="echeance" name="echeance" className={inputClass}>
-                      <option value="">Sélectionner…</option>
+                      <option value="">{c("select")}</option>
                       {timelines.map((t) => (
                         <option key={t} value={t}>
-                          {t}
+                          {c(t)}
                         </option>
                       ))}
                     </select>
                   </Field>
                 </div>
 
-                <Field id="budget" label="Budget estimé">
+                <Field id="budget" label={c("budget")}>
                   <select id="budget" name="budget" className={inputClass}>
-                    <option value="">Sélectionner…</option>
+                    <option value="">{c("select")}</option>
                     {budgets.map((b) => (
                       <option key={b} value={b}>
-                        {b}
+                        {c(b)}
                       </option>
                     ))}
                   </select>
                 </Field>
 
-                <Field id="message" label="Décrivez votre projet" required>
+                <Field id="message" label={c("project")} required>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={5}
                     className={`${inputClass} resize-none`}
-                    placeholder="Contexte, enjeux, objectifs, contraintes…"
+                    placeholder={c("projectPh")}
                   />
                 </Field>
 
@@ -334,13 +308,12 @@ export default function ContactSection() {
                     className="mt-0.5 w-4 h-4 accent-primary"
                   />
                   <span>
-                    J&apos;accepte que mes données soient traitées dans le cadre
-                    de ma demande, conformément à la{" "}
+                    {c("consent")}{" "}
                     <a
                       href="/confidentialite"
                       className="text-primary underline underline-offset-2"
                     >
-                      politique de confidentialité
+                      {c("privacyLink")}
                     </a>
                     .
                   </span>
@@ -350,12 +323,11 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full bg-white text-[#0B1220] font-medium text-sm px-6 py-4 rounded-full hover:bg-accent-light transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  Envoyer ma demande
+                  {c("submit")}
                 </button>
 
                 <p className="text-center text-text-muted text-xs">
-                  Réponse sous 48 heures ouvrées · Premier échange sans
-                  engagement
+                  {c("reassure")}
                 </p>
               </form>
             )}

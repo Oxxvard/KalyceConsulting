@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export const metadata = {
   title: "Page introuvable",
@@ -22,7 +22,7 @@ export default function NotFound() {
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 bg-primary text-ink text-sm font-medium px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
           >
             Retour à l&apos;accueil
           </Link>

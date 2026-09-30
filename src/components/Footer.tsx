@@ -1,23 +1,28 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import KalyceLockup from "./KalyceLockup";
 import NewsletterForm from "./NewsletterForm";
 
+// Les chemins restent en français : seuls les libellés sont traduits.
 const discoverLinks = [
-  { label: "Services", href: "/services" },
-  { label: "Méthodologie", href: "/methodologie" },
-  { label: "Références", href: "/references" },
-  { label: "À propos", href: "/a-propos" },
-];
+  { key: "services", href: "/services" },
+  { key: "method", href: "/methodologie" },
+  { key: "references", href: "/references" },
+  { key: "about", href: "/a-propos" },
+] as const;
 
 const supportLinks = [
-  { label: "Contact", href: "/contact" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Mentions légales", href: "/mentions-legales" },
-  { label: "Confidentialité", href: "/confidentialite" },
-  { label: "CGV", href: "/cgv" },
-];
+  { key: "contact", href: "/contact", ns: "nav" },
+  { key: "faq", href: "/faq", ns: "nav" },
+  { key: "legal", href: "/mentions-legales", ns: "footer" },
+  { key: "privacy", href: "/confidentialite", ns: "footer" },
+  { key: "terms", href: "/cgv", ns: "footer" },
+] as const;
 
 export default function Footer() {
+  const t = useTranslations("footer");
+  const nav = useTranslations("nav");
+
   return (
     <footer className="bg-bg text-text-light">
       {/* Top contact band */}
@@ -28,7 +33,7 @@ export default function Footer() {
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
-            Contacter{" "}
+            {t("ctaPre")}{" "}
             <em className="text-primary not-italic font-semibold italic">
               Kalyce Consulting
             </em>
@@ -50,7 +55,7 @@ export default function Footer() {
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="m3 7 9 6 9-6" />
             </svg>
-            Contact
+            {t("ctaBtn")}
           </Link>
         </div>
       </div>
@@ -60,7 +65,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
           {/* Logo */}
           <div>
-            <div style={{ fontFamily: "var(--font-archivo), system-ui, sans-serif" }}>
+            <div style={{ fontFamily: "var(--font-body), system-ui, sans-serif" }}>
               <KalyceLockup scale={1.35} />
             </div>
           </div>
@@ -68,12 +73,10 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="font-display text-2xl font-semibold text-white mb-2">
-              Newsletter
+              {t("newsletter")}
             </h3>
             <p className="text-text-light text-sm mb-5">
-              Recevez nos analyses et points de vue sur le management et la
-              transformation.
-            </p>
+              {t("newsletterText")}</p>
             <NewsletterForm />
           </div>
         </div>
@@ -83,12 +86,12 @@ export default function Footer() {
         {/* Social + columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
           {/* Social icons */}
-          <ul className="flex items-center gap-3" aria-label="Réseaux sociaux">
+          <ul className="flex items-center gap-3" aria-label={t("social")}>
             <li>
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-ink transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -104,7 +107,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="X (Twitter)"
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-ink transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -120,7 +123,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-ink transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -136,7 +139,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-ink transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -151,8 +154,8 @@ export default function Footer() {
             <li>
               <a
                 href="/sitemap.xml"
-                aria-label="Plan du site"
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                aria-label={t("sitemap")}
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-ink transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -175,7 +178,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-sm text-text-light hover:text-primary transition-colors"
                   >
-                    {link.label}
+                    {nav(link.key)}
                   </Link>
                 </li>
               ))}
@@ -187,7 +190,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-sm text-text-light hover:text-primary transition-colors"
                   >
-                    {link.label}
+                    {link.ns === "nav" ? nav(link.key) : t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -199,10 +202,10 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-text-muted text-xs">
-            Cabinet de conseil en management — France
+            {t("tagline")}
           </p>
           <p className="text-text-muted text-xs">
-            © 2026 Kalyce Consulting. Tous droits réservés.
+            © {new Date().getFullYear()} Kalyce Consulting. {t("rights")}
           </p>
         </div>
       </div>

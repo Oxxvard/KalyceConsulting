@@ -1,17 +1,22 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 interface PageHeroProps {
   eyebrow: string;
-  title: ReactNode;
+  /** Première partie du titre, en ivoire. */
+  title: string;
+  /** Seconde partie, mise en avant en doré. */
+  titleEm?: string;
   description?: string;
 }
 
 export default function PageHero({
   eyebrow,
   title,
+  titleEm,
   description,
 }: PageHeroProps) {
+  const t = useTranslations("pages");
   return (
     <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-bg-soft overflow-hidden">
       {/* Ambient glows */}
@@ -26,21 +31,29 @@ export default function PageHero({
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <nav
-          aria-label="Fil d'Ariane"
+          aria-label={t("breadcrumb")}
           className="text-xs text-text-light mb-5"
         >
           <Link href="/" className="hover:text-primary transition-colors">
-            Accueil
+            {t("home")}
           </Link>
           <span className="mx-2 text-text-muted">/</span>
           <span className="text-primary font-medium">{eyebrow}</span>
         </nav>
 
-        <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-white px-4 py-1.5 rounded-full mb-5">
+        <span className="inline-block text-xs font-semibold uppercase tracking-wider bg-accent text-ink px-4 py-1.5 rounded-full mb-5">
           {eyebrow}
         </span>
         <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight max-w-3xl">
           {title}
+          {titleEm && (
+            <>
+              {" "}
+              <em className="text-primary not-italic font-semibold italic">
+                {titleEm}
+              </em>
+            </>
+          )}
         </h1>
         {description && (
           <p className="mt-6 text-text-light text-lg leading-relaxed max-w-2xl">
