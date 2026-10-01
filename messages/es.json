@@ -44,6 +44,8 @@
     "s4": "Más de 1.000",
     "email": "Email profesional",
     "emailPlaceholder": "tu@empresa.es",
+    "phone": "Teléfono (opcional)",
+    "phonePh": "+33 6 12 34 56 78",
     "submit": "Solicitar una conversación",
     "privacy": "Respuesta en un día hábil. Sus datos se tratan de forma confidencial.",
     "reply": "Respuesta en 24 h"
@@ -150,7 +152,7 @@
     "title": "Una firma joven, con",
     "titleEm": "compromisos claros",
     "titleEnd": "desde la primera conversación.",
-    "text": "Estamos empezando. Más que un palmarés, preferimos anunciar aquello por lo que pueden exigirnos: plazos cumplidos, un encuadre rápido y efectos medidos con ustedes.",
+    "text": "Estamos empezando. Más que un palmarés, preferimos anunciar aquello por lo que pueden exigirnos: plazos cumplidos, un encuadre rápido y efectos medidos con ustedes. Y una ambición: crecer con ustedes.",
     "v1": "24 h",
     "l1": "Respuesta a su solicitud",
     "d1": "días hábiles",

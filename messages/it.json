@@ -44,6 +44,8 @@
     "s4": "Oltre 1.000",
     "email": "Email aziendale",
     "emailPlaceholder": "tu@azienda.it",
+    "phone": "Telefono (facoltativo)",
+    "phonePh": "+33 6 12 34 56 78",
     "submit": "Richiedi un confronto",
     "privacy": "Risposta entro un giorno lavorativo. Le vostre informazioni restano riservate.",
     "reply": "Risposta entro 24 h"
@@ -150,7 +152,7 @@
     "title": "Uno studio giovane, con",
     "titleEm": "impegni chiari",
     "titleEnd": "fin dal primo confronto.",
-    "text": "Stiamo iniziando. Più che un palmarès, preferiamo dichiarare ciò su cui potete tenerci: scadenze rispettate, un inquadramento rapido ed effetti misurati insieme a voi.",
+    "text": "Stiamo iniziando. Più che un palmarès, preferiamo dichiarare ciò su cui potete tenerci: scadenze rispettate, un inquadramento rapido ed effetti misurati insieme a voi. E un'ambizione: crescere con voi.",
     "v1": "24 h",
     "l1": "Risposta alla vostra richiesta",
     "d1": "giorni lavorativi",

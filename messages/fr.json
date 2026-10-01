@@ -44,6 +44,8 @@
     "s4": "Plus de 1 000",
     "email": "Email professionnel",
     "emailPlaceholder": "vous@entreprise.fr",
+    "phone": "Téléphone (optionnel)",
+    "phonePh": "06 12 34 56 78",
     "submit": "Demander un échange",
     "privacy": "Réponse sous 24 h ouvrées. Vos informations restent confidentielles.",
     "reply": "Réponse sous 24 h"
@@ -150,7 +152,7 @@
     "title": "Un cabinet jeune, des",
     "titleEm": "engagements clairs",
     "titleEnd": "dès le premier échange.",
-    "text": "Nous démarrons. Plutôt qu'un palmarès, nous préférons annoncer ce sur quoi vous pouvez nous tenir : des délais tenus, un cadrage rapide et des effets mesurés avec vous.",
+    "text": "Nous démarrons. Plutôt qu'un palmarès, nous préférons annoncer ce sur quoi vous pouvez nous tenir : des délais tenus, un cadrage rapide et des effets mesurés avec vous. Et une ambition : grandir avec vous.",
     "v1": "24 h",
     "l1": "Réponse à votre demande",
     "d1": "jours ouvrés",

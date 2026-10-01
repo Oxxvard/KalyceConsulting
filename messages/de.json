@@ -44,6 +44,8 @@
     "s4": "Über 1.000",
     "email": "Geschäftliche E-Mail",
     "emailPlaceholder": "sie@unternehmen.de",
+    "phone": "Telefon (optional)",
+    "phonePh": "+33 6 12 34 56 78",
     "submit": "Gespräch anfragen",
     "privacy": "Antwort innerhalb eines Werktags. Ihre Angaben bleiben vertraulich.",
     "reply": "Antwort binnen 24 Std."
@@ -150,7 +152,7 @@
     "title": "Eine junge Kanzlei mit",
     "titleEm": "klaren Zusagen",
     "titleEnd": "vom ersten Gespräch an.",
-    "text": "Wir fangen an. Statt einer Erfolgsbilanz nennen wir lieber das, woran Sie uns messen können: eingehaltene Fristen, eine rasche Abgrenzung und gemeinsam gemessene Wirkung.",
+    "text": "Wir fangen an. Statt einer Erfolgsbilanz nennen wir lieber das, woran Sie uns messen können: eingehaltene Fristen, eine rasche Abgrenzung und gemeinsam gemessene Wirkung. Und ein Anspruch: mit Ihnen zu wachsen.",
     "v1": "24 Std.",
     "l1": "Antwort auf Ihre Anfrage",
     "d1": "Werktage",

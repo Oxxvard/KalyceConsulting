@@ -44,6 +44,8 @@
     "s4": "Over 1,000",
     "email": "Work email",
     "emailPlaceholder": "you@company.com",
+    "phone": "Phone (optional)",
+    "phonePh": "+33 6 12 34 56 78",
     "submit": "Request a conversation",
     "privacy": "Reply within one business day. Your information stays confidential.",
     "reply": "Reply within 24 h"
@@ -150,7 +152,7 @@
     "title": "A young firm with",
     "titleEm": "clear commitments",
     "titleEnd": "from the first conversation.",
-    "text": "We are starting out. Rather than a track record, we prefer to state what you can hold us to: deadlines met, fast scoping, and effects measured with you.",
+    "text": "We are starting out. Rather than a track record, we prefer to state what you can hold us to: deadlines met, fast scoping, and effects measured with you. And one ambition: to grow with you.",
     "v1": "24 h",
     "l1": "Reply to your enquiry",
     "d1": "business days",
