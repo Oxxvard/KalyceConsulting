@@ -184,6 +184,24 @@ export default function HeroSection() {
                 />
               </div>
             </div>
+
+            {/* Le téléphone reste facultatif : il accélère le rappel sans
+                alourdir la barrière à l'envoi. */}
+            <div className="kh-seg kh-seg-wide">
+              <label htmlFor="telephone-hero" className="kh-seg-label">
+                {f("phone")}
+              </label>
+              <div className="kh-seg-control">
+                <input
+                  id="telephone-hero"
+                  name="telephone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder={f("phonePh")}
+                  className="kh-input"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="kh-card-meta">
