@@ -124,6 +124,15 @@ export default function ContactSection() {
 
             <div className="mt-10 liquid-glass rounded-2xl border border-white/10 p-5">
               <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-1">
+                {c("modalTitle")}
+              </p>
+              <p className="text-text-light text-sm leading-relaxed">
+                {c("modal")}
+              </p>
+            </div>
+
+            <div className="mt-4 liquid-glass rounded-2xl border border-white/10 p-5">
+              <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-1">
                 {c("confidentialTitle")}
               </p>
               <p className="text-text-light text-sm leading-relaxed">

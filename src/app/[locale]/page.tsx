@@ -3,8 +3,6 @@ import HomeIntro from "@/components/home/HomeIntro";
 import HomeServicesPreview from "@/components/home/HomeServicesPreview";
 import HomeApproach from "@/components/home/HomeApproach";
 import StatsSection from "@/components/StatsSection";
-import HomeReferencesPreview from "@/components/home/HomeReferencesPreview";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import HomeCta from "@/components/home/HomeCta";
 
 
@@ -17,8 +15,6 @@ export default function Home() {
       <HomeServicesPreview />
       <HomeApproach />
       <StatsSection />
-      <HomeReferencesPreview />
-      <TestimonialsSection />
       <HomeCta />
     </>
   );

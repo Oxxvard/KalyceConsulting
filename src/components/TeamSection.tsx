@@ -5,9 +5,9 @@ import FadeIn from "./FadeIn";
 /**
  * Les trois associés du cabinet.
  *
- * ⚠️ INCOMPLET — les noms sont réels, il manque pour chacun le parcours
- * (`bio`), le LinkedIn et le portrait. Déposez les photos dans
- * public/images/equipe/ (carré, 800×800 minimum) et renseignez `photo`.
+ * Noms, rôles et parcours repris du support de positionnement du cabinet.
+ * Il reste à ajouter les portraits — public/images/equipe/, carré,
+ * 800×800 minimum — et les liens LinkedIn.
  *
  * Tant que `photo` est vide, la carte affiche les initiales sur un fond
  * dégradé — une absence assumée plutôt qu'une image manquante.
@@ -15,6 +15,7 @@ import FadeIn from "./FadeIn";
 
 export type Member = {
   name: string;
+  role: string;
   bio: string;
   /** Chemin dans /public, ex. "/images/equipe/prenom-nom.webp" */
   photo?: string;
@@ -23,19 +24,19 @@ export type Member = {
 
 const team: Member[] = [
   {
-    name: "Florian Vial",
-    // ⚠️ À RÉDIGER : deux lignes de parcours réel. Laissé vide volontairement,
-    //    inventer le passé d'une personne nommée n'est pas une option.
-    bio: "",
-    // linkedin: "https://www.linkedin.com/in/…",
+    name: "Florian Buzzo",
+    role: "Vision stratégique et managériale",
+    bio: "Approche grand groupe : structuration et pilotage de projets stratégiques complexes.",
   },
   {
-    name: "Florian Buzzo",
-    bio: "",
+    name: "Florian Vial",
+    role: "Profil commercial complet",
+    bio: "Solide expérience PME, agile sur le digital et bilingue. Capacité à prendre de la hauteur sur les situations.",
   },
   {
     name: "Anthony Armand",
-    bio: "",
+    role: "Gérant associé, moteur commercial",
+    bio: "Double expérience grande distribution et PME. Pilote le développement commercial avec exigence et constance.",
   },
 ];
 
@@ -56,7 +57,7 @@ const teamJsonLd = {
   employee: team.map((m) => ({
     "@type": "Person",
     name: m.name,
-    jobTitle: "Associé",
+    jobTitle: m.role,
     ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
   })),
 };
@@ -124,6 +125,9 @@ export default function TeamSection() {
 
                 <div className="p-6 flex flex-col gap-2 flex-1">
                   <h3 className="font-display text-lg text-white">{m.name}</h3>
+                  <p className="text-primary text-xs font-medium uppercase tracking-wider">
+                    {m.role}
+                  </p>
                   {m.bio ? (
                     <p className="text-white/70 text-sm leading-relaxed flex-1">
                       {m.bio}

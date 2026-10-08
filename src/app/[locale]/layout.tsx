@@ -116,6 +116,12 @@ const organizationJsonLd = {
     { "@type": "AdministrativeArea", name: "Alpes-Maritimes" },
     { "@type": "Country", name: "France" },
   ],
+  // Activité menée à distance : Google le signale dans les résultats locaux.
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceLocation: { "@type": "VirtualLocation", name: "À distance" },
+    serviceUrl: `${siteUrl}/contact`,
+  },
   serviceType: [
     "Conseil en stratégie",
     "Conduite du changement",

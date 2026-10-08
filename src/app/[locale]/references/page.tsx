@@ -6,7 +6,6 @@ import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import HomeCta from "@/components/home/HomeCta";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
@@ -41,19 +40,6 @@ export async function generateMetadata({
     },
   };
 }
-
-
-// Un cas = un numéro + son visuel ; tous les textes viennent du catalogue.
-const cases = [
-  { n: "1", image: "/images/secteurs/industrie.webp" },
-  { n: "2", image: "/images/secteurs/distribution.webp" },
-  { n: "3", image: "/images/secteurs/numerique.webp" },
-  { n: "4", image: "/images/secteurs/sante.webp" },
-  { n: "5", image: "/images/secteurs/public.webp" },
-  { n: "6", image: "/images/secteurs/energie.webp" },
-] as const;
-const ACTIONS = ["a1", "a2", "a3"] as const;
-const RESULTS = ["1", "2", "3"] as const;
 
 
 const sectorsServed = ["sect1", "sect2", "sect3", "sect4", "sect5", "sect6", "sect7", "sect8"] as const;
@@ -95,100 +81,42 @@ export default function ReferencesPage() {
         </div>
       </section>
 
-      {/* Case studies — DARK with glass */}
-      <section className="py-20 lg:py-28 bg-bg" aria-label="Études de cas">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 space-y-10">
-          {cases.map((c, i) => (
-            <FadeIn
-              key={c.n}
-              delay={i * 60}
-              as="article"
-              className="grid grid-cols-1 lg:grid-cols-12 liquid-glass rounded-3xl border border-white/10 overflow-hidden"
-            >
-              <div className="bg-bg-mauve text-white p-8 lg:p-10 lg:col-span-4 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
-                {/* Visuel d'ambiance du secteur — photo libre de droit (Pexels),
-                    pas une image du client, d'où l'alt explicite. */}
-                <Image
-                  src={c.image}
-                  alt={rp(`c${c.n}alt`)}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, 100vw"
-                  className="object-cover"
-                />
-                {/* Pas de voile plein cadre : la photo doit se voir. Seul un
-                    dégradé bas porte la lisibilité du nom du client. */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-bg via-bg/70 to-transparent"
-                />
-                <span className="relative text-xs font-medium bg-bg/75 backdrop-blur-md px-3 py-1 rounded-full border border-white/25 self-start shadow-lg">
-                  {rp(`c${c.n}sec`)}
-                </span>
-                <div className="relative">
-                  <p className="text-xs uppercase tracking-wider text-white/60 font-semibold mb-2">
-                    {rp("client")}
+      {/* Comment se passe une mission — remplace les études de cas, que le
+          cabinet ne peut pas encore produire. */}
+      <section className="py-20 lg:py-28 bg-bg kh-warm" aria-label={rp("howT")}>
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <FadeIn className="max-w-2xl mb-14">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              {rp("newT")}{" "}
+              <em className="text-primary not-italic font-semibold italic">
+                {rp("newEm")}
+              </em>
+            </h2>
+            <p className="mt-6 text-text-light text-lg leading-relaxed">
+              {rp("newD")}
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {["1", "2", "3"].map((n, i) => (
+              <FadeIn key={n} delay={i * 90}>
+                <div className="h-full liquid-glass rounded-2xl p-8 border border-white/10">
+                  <p className="font-display text-4xl font-bold text-primary/50 mb-4">
+                    {`0${n}`}
                   </p>
-                  <p className="font-display text-xl font-semibold">
-                    {rp(`c${c.n}cli`)}
+                  <h3 className="font-display text-xl font-semibold text-white mb-3">
+                    {rp(`how${n}T`)}
+                  </h3>
+                  <p className="text-text-light text-sm leading-relaxed">
+                    {rp(`how${n}X`)}
                   </p>
                 </div>
-              </div>
-
-              <div className="p-8 lg:p-10 lg:col-span-8">
-                <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-4">
-                  {rp(`c${c.n}tit`)}
-                </h3>
-
-                <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-2">
-                  {rp("context")}
-                </p>
-                <p className="text-text-light text-sm leading-relaxed mb-5">
-                  {rp(`c${c.n}ctx`)}
-                </p>
-
-                <p className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-2">
-                  {rp("intervention")}
-                </p>
-                <ul className="space-y-1.5 mb-6">
-                  {ACTIONS.map((a) => (
-                    <li
-                      key={a}
-                      className="flex items-start gap-2.5 text-sm text-text-light"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-2" />
-                      <span>{rp(`c${c.n}${a}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="grid grid-cols-3 gap-4 pt-5 border-t border-white/10">
-                  {RESULTS.map((r) => (
-                    <div key={r}>
-                      <p className="font-display text-2xl font-bold text-primary">
-                        {rp(`c${c.n}rv${r}`)}
-                      </p>
-                      <p className="text-text-muted text-xs leading-tight mt-1">
-                        {rp(`c${c.n}rl${r}`)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          ))}
+              </FadeIn>
+            ))}
+          </div>
         </div>
-
-        <FadeIn className="text-center mt-14">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#0B1220] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-          >
-            Discuter de votre projet
-          </Link>
-        </FadeIn>
       </section>
 
-      <TestimonialsSection />
       <HomeCta />
     </>
   );
